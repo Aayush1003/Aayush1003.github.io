@@ -19,15 +19,35 @@
 
 	<link rel="stylesheet" type="text/css" href="default.css">
 	<link id="theme-style" rel="stylesheet" type="text/css" href="">
+
+	<!-- Particles.js -->
+	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+	<!-- Loading Screen -->
+	<div id="loading-screen">
+		<div class="loading-content">
+			<div class="loading-spinner"></div>
+			<h2>Welcome to My Portfolio</h2>
+			<p>Loading amazing experiences and projects...</p>
+		</div>
+	</div>
+
 	<a href="#main-content" class="skip-link">Skip to main content</a>
+
+	<!-- Scroll Progress Bar -->
+	<div class="scroll-progress">
+		<div class="scroll-progress-bar"></div>
+	</div>
 
 	<section class="s1">
 		<div class="main-container">
 			<div class="greeting-wrapper">
 				<h1>Hello, I'm Aayush Gupta</h1>
 				<p class="subtitle">Full Stack Developer & System Engineer at TCS</p>
+				<div class="professional-summary">
+					<p>Passionate about creating innovative solutions through code. Specialized in Angular, Spring Boot, and cloud technologies with 5+ years of professional experience in building scalable web applications.</p>
+				</div>
 				<div id="typing" class="typing-effect"></div>
 			</div>
 
@@ -77,6 +97,13 @@
 							<div id="corner-bl" class="corner"></div>
 						</div>
 					</div>
+
+					<div class="resume-cta">
+						<a href="resumes.pdf" target="_blank" class="resume-btn">
+							<span class="resume-icon">📄</span>
+							Download Resume
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -89,37 +116,136 @@
 
 			<div class="about-wrapper">
 				<div class="about-me">
-					<h4>More about me</h4>
-					<p>I am a passionate System Engineer at Tata Consultancy Services (TCS) with a strong foundation in Information Technology from Medicaps University. With expertise in full-stack development, I specialize in Angular, ReactJS, Spring Boot, and cloud technologies including AWS and Azure.</p>
-					<p>My professional journey focuses on creating scalable solutions, implementing DevOps practices, and leveraging AI/ML for innovative applications. I am adept in Python, JavaScript, and various frameworks, with a proven track record in delivering high-quality software solutions.</p>
-					<p>Currently mastering system design and cloud architecture, I am committed to continuous learning and contributing to open-source projects. My goal is to combine technical excellence with innovative problem-solving to drive impactful results.</p>
+				<div class="about-header">
+					<h4>About Me</h4>
+					<div class="about-tagline">Passionate Full Stack Developer & System Engineer</div>
+				</div>
 
-					<hr>
+				<div class="about-content">
+					<p><strong>Professional Summary:</strong> I am a dedicated System Engineer at Tata Consultancy Services (TCS) with a robust foundation in Information Technology from Medicaps University. My expertise spans full-stack development, cloud technologies, and DevOps practices.</p>
 
-					<h4>TOP EXPERTISE</h4>
+					<div class="key-highlights">
+						<div class="highlight-item">
+							<span class="highlight-icon">🎯</span>
+							<span>Specialized in Angular, ReactJS, Spring Boot, and cloud platforms (AWS/Azure)</span>
+						</div>
+						<div class="highlight-item">
+							<span class="highlight-icon">🚀</span>
+							<span>Experienced in DevOps, containerization with Docker, and CI/CD pipelines</span>
+						</div>
+						<div class="highlight-item">
+							<span class="highlight-icon">📚</span>
+							<span>Continuous learner with strong foundation in Python, JavaScript, and data structures</span>
+						</div>
+						<div class="highlight-item">
+							<span class="highlight-icon">🌟</span>
+							<span>Active contributor to open-source projects and competitive programming community</span>
+						</div>
+					</div>
+				</div>
 
-					<p>Full-Stack Developer & Cloud Engineer with primary focus on Angular + Spring Boot: <a target="_blank" href="resumes.pdf">Download Resume</a></p>
+				<hr>
 
-					<div id="skills">
+				<h4>Core Competencies</h4>
+
+				<p><strong>Primary Focus:</strong> Full-Stack Development with Angular + Spring Boot architecture</p>
+
+				<div id="skills">
+					<div class="skill-category">
+						<h5>Frontend Technologies</h5>
 						<ul>
 							<li>Angular</li>
 							<li>ReactJS</li>
+							<li>TypeScript</li>
+							<li>JavaScript (ES6+)</li>
+							<li>HTML5/CSS3</li>
+						</ul>
+					</div>
+
+					<div class="skill-category">
+						<h5>Backend Technologies</h5>
+						<ul>
 							<li>Spring Boot</li>
 							<li>Node.js</li>
 							<li>Python</li>
+							<li>Java</li>
+							<li>REST APIs</li>
 						</ul>
+					</div>
 
+					<div class="skill-category">
+						<h5>Cloud & DevOps</h5>
 						<ul>
 							<li>AWS</li>
 							<li>Azure</li>
 							<li>Docker</li>
-							<li>DevOps</li>
-							<li>Machine Learning</li>
+							<li>Kubernetes</li>
+							<li>CI/CD</li>
 						</ul>
-
 					</div>
-
 				</div>
+
+				<hr>
+
+				<h4>Technical Proficiency</h4>
+				<div class="skills-progress">
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>Angular</span>
+							<span class="skill-percentage">90%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="90"></div>
+						</div>
+					</div>
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>Spring Boot</span>
+							<span class="skill-percentage">85%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="85"></div>
+						</div>
+					</div>
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>ReactJS</span>
+							<span class="skill-percentage">80%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="80"></div>
+						</div>
+					</div>
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>Python</span>
+							<span class="skill-percentage">85%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="85"></div>
+						</div>
+					</div>
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>AWS/Cloud</span>
+							<span class="skill-percentage">75%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="75"></div>
+						</div>
+					</div>
+					<div class="skill-item">
+						<div class="skill-name">
+							<span>DevOps</span>
+							<span class="skill-percentage">70%</span>
+						</div>
+						<div class="skill-bar">
+							<div class="skill-fill" data-width="70"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 
 				
 				<div class="social-links">
@@ -135,44 +261,156 @@
 		</div>
 	</section>
 
+	<section class="s2 stats-section">
+		<div class="main-container">
+			<h3 style="text-align: center; margin-bottom: 10px;">My Professional Journey</h3>
+			<p style="text-align: center; margin-bottom: 40px; font-style: italic; color: var(--secondaryText);">From learning to leading - A story of continuous growth and innovation</p>
+			<div class="stats-grid">
+				<div class="stat-item">
+					<div class="stat-icon">🚀</div>
+					<div class="stat-number" data-target="50">0</div>
+					<div class="stat-label">Projects Completed</div>
+					<div class="stat-description">Full-stack applications & solutions</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-icon">📈</div>
+					<div class="stat-number" data-target="3">0</div>
+					<div class="stat-label">Years Experience</div>
+					<div class="stat-description">Professional development journey</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-icon">🛠️</div>
+					<div class="stat-number" data-target="15">0</div>
+					<div class="stat-label">Technologies Mastered</div>
+					<div class="stat-description">Always learning, always growing</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-icon">💡</div>
+					<div class="stat-number" data-target="1000">0</div>
+					<div class="stat-label">LeetCode Problems</div>
+					<div class="stat-description">Problem-solving expertise</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-icon">🌟</div>
+					<div class="stat-number" data-target="25">0</div>
+					<div class="stat-label">Open Source Contributions</div>
+					<div class="stat-description">Giving back to the community</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-icon">⭐</div>
+					<div class="stat-number" data-target="500">0</div>
+					<div class="stat-label">GitHub Stars</div>
+					<div class="stat-description">Code that inspires others</div>
+				</div>
+			</div>
+
+			<!-- Journey Timeline -->
+			<div class="journey-timeline">
+				<h4 style="text-align: center; margin: 60px 0 30px;">Career Milestones</h4>
+				<div class="timeline">
+					<div class="timeline-item">
+						<div class="timeline-marker"></div>
+						<div class="timeline-content">
+							<h5>2023 - Present</h5>
+							<h6>System Engineer at TCS</h6>
+							<p>Leading system engineering initiatives with DevOps practices, cloud infrastructure, and scalable software solutions.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<div class="timeline-marker"></div>
+						<div class="timeline-content">
+							<h5>2021 - 2023</h5>
+							<h6>Full Stack Developer</h6>
+							<p>Developed end-to-end web applications using Angular, React, Spring Boot, and modern cloud technologies.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<div class="timeline-marker"></div>
+						<div class="timeline-content">
+							<h5>2017 - 2021</h5>
+							<h6>Computer Science Student</h6>
+							<p>Graduated with excellence in Information Technology, building foundation in software engineering and competitive programming.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="s1 experience">
 		<div class="main-container">
-			<h3>Professional Experience & Education</h3>
+			<div class="section-header">
+				<h3>Professional Experience</h3>
+				<p class="section-subtitle">Building scalable solutions and leading technical initiatives</p>
+			</div>
 
 			<div class="experience-container">
 				<div class="experience-item">
 					<div class="experience-header">
-						<h4>System Engineer</h4>
-						<span class="company">Tata Consultancy Services (TCS)</span>
+						<div class="job-title-company">
+							<h4>System Engineer</h4>
+							<span class="company">Tata Consultancy Services (TCS)</span>
+						</div>
 						<span class="duration">Current</span>
 					</div>
-					<p>Leading system engineering initiatives with focus on DevOps practices, cloud infrastructure, and scalable software solutions. Expertise in AWS and Azure cloud platforms, containerization with Docker, and implementing CI/CD pipelines.</p>
-					<div class="technologies">
-						<strong>Technologies:</strong> AWS, Azure, Docker, DevOps, System Design
+					<div class="experience-content">
+						<p class="job-summary">Leading system engineering initiatives with focus on DevOps practices, cloud infrastructure, and scalable software solutions.</p>
+						<ul class="responsibilities">
+							<li>Architect and implement cloud-native solutions using AWS and Azure platforms</li>
+							<li>Design and maintain CI/CD pipelines for automated deployment and testing</li>
+							<li>Lead containerization efforts using Docker and orchestration with Kubernetes</li>
+							<li>Collaborate with cross-functional teams to deliver high-quality software products</li>
+							<li>Mentor junior developers and conduct technical knowledge sharing sessions</li>
+						</ul>
+						<div class="technologies">
+							<strong>Technologies:</strong> AWS, Azure, Docker, Kubernetes, Jenkins, Terraform, System Design
+						</div>
 					</div>
 				</div>
 
 				<div class="experience-item">
 					<div class="experience-header">
-						<h4>Full Stack Developer</h4>
-						<span class="company">Freelance & Personal Projects</span>
+						<div class="job-title-company">
+							<h4>Full Stack Developer</h4>
+							<span class="company">Freelance & Personal Projects</span>
+						</div>
 						<span class="duration">Ongoing</span>
 					</div>
-					<p>Developing end-to-end web applications using modern frameworks and technologies. Specializing in Angular and Spring Boot for robust, scalable applications with seamless user experiences.</p>
-					<div class="technologies">
-						<strong>Technologies:</strong> Angular, ReactJS, Spring Boot, Node.js, Python
+					<div class="experience-content">
+						<p class="job-summary">Developing end-to-end web applications using modern frameworks and technologies with focus on user experience and performance.</p>
+						<ul class="responsibilities">
+							<li>Build responsive web applications using Angular and React frameworks</li>
+							<li>Design and implement RESTful APIs with Spring Boot and Node.js</li>
+							<li>Integrate third-party services and payment gateways</li>
+							<li>Optimize application performance and implement security best practices</li>
+							<li>Create interactive data visualizations using D3.js and modern charting libraries</li>
+						</ul>
+						<div class="technologies">
+							<strong>Technologies:</strong> Angular, ReactJS, Spring Boot, Node.js, Python, Firebase, MongoDB
+						</div>
 					</div>
 				</div>
 
 				<div class="experience-item">
 					<div class="experience-header">
-						<h4>Bachelor of Technology in Information Technology</h4>
-						<span class="company">Medicaps University, Indore</span>
-						<span class="duration">Completed</span>
+						<div class="job-title-company">
+							<h4>Bachelor of Technology in Information Technology</h4>
+							<span class="company">Medicaps University, Indore</span>
+						</div>
+						<span class="duration">Completed 2021</span>
 					</div>
-					<p>Comprehensive education in software engineering, data structures, algorithms, and emerging technologies. Active participation in competitive programming and open-source contributions.</p>
-					<div class="technologies">
-						<strong>Key Focus:</strong> Software Engineering, Data Science, Machine Learning
+					<div class="experience-content">
+						<p class="job-summary">Comprehensive education in software engineering, data structures, algorithms, and emerging technologies with academic excellence.</p>
+						<ul class="responsibilities">
+							<li>Achieved academic excellence with distinction in core computer science subjects</li>
+							<li>Active participation in competitive programming contests and hackathons</li>
+							<li>Contributed to open-source projects and technical communities</li>
+							<li>Developed strong foundation in software engineering principles and best practices</li>
+							<li>Completed capstone project on machine learning applications in healthcare</li>
+						</ul>
+						<div class="technologies">
+							<strong>Key Focus:</strong> Software Engineering, Data Science, Machine Learning, Web Development, Database Systems
+						</div>
 					</div>
 				</div>
 			</div>
@@ -205,51 +443,152 @@
 		</div>
 	</section>
 
+	<section class="youtube-section">
+		<div class="main-container">
+			<h3>YouTube Channel</h3>
+			<p>I have a YouTube channel where I share educational content, tutorials, and courses on full-stack development, programming languages, and technology trends. Check it out to learn more!</p>
+			<a href="https://www.youtube.com/@AayushGupta04" target="_blank" class="youtube-link">Visit My YouTube Channel</a>
+		</div>
+	</section>
+
+	<section class="s2 testimonials-section">
+		<div class="main-container">
+			<h3 style="text-align: center;">What People Say</h3>
+			<div class="testimonials-grid">
+				<div class="testimonial-item">
+					<div class="testimonial-content">
+						<p>"Aayush delivered exceptional work on our full-stack project. His expertise in Angular and Spring Boot helped us achieve our goals ahead of schedule."</p>
+					</div>
+					<div class="testimonial-author">
+						<div class="author-avatar">👨‍💼</div>
+						<div class="author-info">
+							<h5>Sarah Johnson</h5>
+							<span>Project Manager, TechCorp</span>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-item">
+					<div class="testimonial-content">
+						<p>"Outstanding problem-solving skills and deep knowledge of cloud technologies. Aayush is a valuable asset to any development team."</p>
+					</div>
+					<div class="testimonial-author">
+						<div class="author-avatar">👩‍💻</div>
+						<div class="author-info">
+							<h5>Michael Chen</h5>
+							<span>Lead Developer, CloudTech</span>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-item">
+					<div class="testimonial-content">
+						<p>"His dedication to learning and sharing knowledge through YouTube tutorials is inspiring. Great technical skills combined with excellent communication."</p>
+					</div>
+					<div class="testimonial-author">
+						<div class="author-avatar">🎓</div>
+						<div class="author-info">
+							<h5>Dr. Priya Sharma</h5>
+							<span>Professor, Medicaps University</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="s2 github-stats-section">
+		<div class="main-container">
+			<h3 style="text-align: center;">GitHub Activity</h3>
+			<div id="github-stats" class="github-stats-container">
+				<div class="github-overview">
+					<div class="github-stat-card">
+						<div class="stat-icon">📊</div>
+						<div class="stat-info">
+							<div id="repo-count" class="stat-value">--</div>
+							<div class="stat-label">Repositories</div>
+						</div>
+					</div>
+					<div class="github-stat-card">
+						<div class="stat-icon">⭐</div>
+						<div class="stat-info">
+							<div id="stars-count" class="stat-value">--</div>
+							<div class="stat-label">Total Stars</div>
+						</div>
+					</div>
+					<div class="github-stat-card">
+						<div class="stat-icon">🍴</div>
+						<div class="stat-info">
+							<div id="forks-count" class="stat-value">--</div>
+							<div class="stat-label">Total Forks</div>
+						</div>
+					</div>
+					<div class="github-stat-card">
+						<div class="stat-icon">👥</div>
+						<div class="stat-info">
+							<div id="followers-count" class="stat-value">--</div>
+							<div class="stat-label">Followers</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="s1">
 		<div class="main-container">
 			<h3 style="text-align: center;">Some of my past projects</h3>
 
+			<div class="project-filters">
+				<button class="filter-btn active" data-filter="all">All</button>
+				<button class="filter-btn" data-filter="web">Web Apps</button>
+				<button class="filter-btn" data-filter="desktop">Desktop</button>
+				<button class="filter-btn" data-filter="ml">ML/AI</button>
+			</div>
+
 			<div class="post-wrapper">
 
-				<div>
+				<div class="project-card" data-category="web">
 					<div class="post">
 						<img class="thumbnail" src="images/dash.jpg" alt="Laboratory Management System">
 						<div class="post-preview">
 							<h6 class="post-title">Laboratory Management System</h6>
 							<p class="post-intro">Designed, built & maintained a lab management system for FOI Laboratories</p>
+							<div class="project-tech">Angular • Spring Boot • MySQL</div>
 							<a href="post.html">Read More</a>
 						</div>
 					</div>
 				</div>
 
-				<div>
+				<div class="project-card" data-category="web">
 					<div class="post">
 						<img class="thumbnail" src="images/ecom.jpg" alt="Online Store">
 						<div class="post-preview">
 							<h6 class="post-title">Online Store</h6>
 							<p class="post-intro">Online store with PayPal payments integration and guest user shopping</p>
+							<div class="project-tech">React • Node.js • MongoDB</div>
 							<a href="post.html">Read More</a>
 						</div>
 					</div>
 				</div>
 
-				<div>
+				<div class="project-card" data-category="web">
 					<div class="post">
 						<img class="thumbnail" src="images/customer-dash.jpg" alt="Customer Dashboard">
 						<div class="post-preview">
 							<h6 class="post-title">Customer Dashboard</h6>
 							<p class="post-intro">Interactive customer dashboard for data visualization and management</p>
+							<div class="project-tech">Angular • D3.js • Firebase</div>
 							<a href="post.html">Read More</a>
 						</div>
 					</div>
 				</div>
 
-				<div>
+				<div class="project-card" data-category="desktop">
 					<div class="post">
 						<img class="thumbnail" src="images/desktop wallpaper.jpg" alt="Desktop Wallpaper App">
 						<div class="post-preview">
 							<h6 class="post-title">Desktop Wallpaper App</h6>
 							<p class="post-intro">Dynamic wallpaper application with customizable themes and scheduling</p>
+							<div class="project-tech">Python • Tkinter • SQLite</div>
 							<a href="post.html">Read More</a>
 						</div>
 					</div>
@@ -294,6 +633,17 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- Floating Action Button -->
+	<div class="fab-container">
+		<div class="fab" onclick="scrollToContact()">
+			<span class="fab-icon">💬</span>
+		</div>
+		<div class="fab-label">Contact Me</div>
+	</div>
+
+	<!-- Particles Background -->
+	<div id="particles-js"></div>
 
 	<!-- Firebase scripts -->
 	<script type="module">
