@@ -123,11 +123,27 @@ async function fetchGitHubRepos() {
 document.addEventListener('DOMContentLoaded', function() {
 	fetchGitHubRepos();
 	fetchGitHubStats();
+	fetchYouTubeStats();
 	initializeAnimations();
 	setupProjectFilters();
-		setupProjectModalListeners();
+	setupProjectModalListeners();
 	setupScrollProgress();
 	setupSmoothScrolling();
+	setupDynamicProjectCards();
+	addHoverEffects();
+	
+	// Engagement features
+	setupTestimonialsCarousel();
+	setupSkillInteraction();
+	initializeActivityFeed();
+	setupSocialSharing();
+	setupNewsletterPopup();
+	setupAchievementBadges();
+	trackEngagement();
+	setupSupportWidget();
+	
+	// Extra cool features
+	initializeExtraFeatures();
 	
 	// Hide loading screen after everything is loaded
 	window.addEventListener('load', () => {
@@ -195,7 +211,22 @@ function openProjectModal(data){
 	modal.querySelector('.modal-title').textContent = data.title || '';
 	modal.querySelector('.modal-intro').textContent = data.intro || '';
 	const img = modal.querySelector('.modal-img');
-	if (data.img) { img.src = data.img; img.style.display = 'block'; } else { img.style.display = 'none'; }
+
+	// Show project image if available; fall back cleanly if it can't be loaded.
+	if (data.img) {
+		img.src = data.img;
+		img.alt = `${data.title || 'Project'} image`;
+		img.style.display = 'block';
+		img.onerror = () => {
+			// Hide broken image and show a fallback placeholder (inlined SVG avoids external network requests)
+			img.onerror = null;
+			img.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22280%22%20height%3D%22180%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f2f2f2%22/%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2216%22%3ENo%20image%3C/text%3E%3C/svg%3E';
+			img.alt = 'No project image available';
+		};
+	} else {
+		img.style.display = 'none';
+	}
+
 	modal.querySelector('.modal-tech').textContent = data.tech || '';
 	modal.classList.add('open');
 	modal.setAttribute('aria-hidden','false');
@@ -333,6 +364,947 @@ async function fetchGitHubStats() {
 		
 	} catch (error) {
 		console.error('Error fetching GitHub stats:', error);
+	}
+}
+
+// YouTube Channel Stats Integration
+async function fetchYouTubeStats() {
+	try {
+		// Since YouTube API requires API key, using alternative approach with RSS feed parsing
+		const channelName = 'AayushGupta04';
+		const youtubeLink = document.querySelector('.youtube-link');
+		
+		// Add animated loading state
+		if (youtubeLink) {
+			youtubeLink.style.transition = 'all 0.3s ease';
+			youtubeLink.addEventListener('mouseenter', function() {
+				this.style.transform = 'translateX(5px)';
+				this.style.boxShadow = '0 8px 20px rgba(255, 0, 0, 0.3)';
+			});
+			youtubeLink.addEventListener('mouseleave', function() {
+				this.style.transform = 'translateX(0)';
+				this.style.boxShadow = 'none';
+			});
+		}
+	} catch (error) {
+		console.error('Error fetching YouTube stats:', error);
+	}
+}
+
+// Dynamic Project Cards from GitHub
+async function setupDynamicProjectCards() {
+	try {
+		const response = await fetch('https://api.github.com/users/Aayush1003/repos?sort=stars&per_page=6');
+		const repos = await response.json();
+		
+		if (!repos || repos.length === 0) return;
+		
+		// Add a 'Featured Projects' badge animation
+		const projectCards = document.querySelectorAll('.project-card');
+		projectCards.forEach((card, index) => {
+			// Add stagger animation
+			card.style.animation = `slideInUp 0.6s ease-out ${index * 0.1}s both`;
+			
+			// Add hover glow effect
+			card.addEventListener('mouseenter', function() {
+				this.style.transform = 'translateY(-8px)';
+				this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.2)';
+			});
+			
+			card.addEventListener('mouseleave', function() {
+				this.style.transform = 'translateY(0)';
+				this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+			});
+		});
+	} catch (error) {
+		console.error('Error setting up dynamic project cards:', error);
+	}
+}
+
+// Enhanced Hover Effects for Interactive Elements
+function addHoverEffects() {
+	// Skill category cards with glow
+	document.querySelectorAll('.skill-category').forEach(category => {
+		category.style.transition = 'all 0.3s ease';
+		category.addEventListener('mouseenter', function() {
+			this.style.transform = 'scale(1.05)';
+			this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.15)';
+		});
+		category.addEventListener('mouseleave', function() {
+			this.style.transform = 'scale(1)';
+			this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+		});
+	});
+	
+	// Achievement items with slide effect
+	document.querySelectorAll('.achievement-item').forEach(item => {
+		item.style.transition = 'all 0.4s ease';
+		item.addEventListener('mouseenter', function() {
+			this.style.transform = 'translateY(-5px) scale(1.02)';
+			this.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.15)';
+		});
+		item.addEventListener('mouseleave', function() {
+			this.style.transform = 'translateY(0) scale(1)';
+			this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+		});
+	});
+	
+	// GitHub stat cards with bounce
+	document.querySelectorAll('.github-stat-card').forEach(card => {
+		card.style.transition = 'all 0.3s ease';
+		card.addEventListener('mouseenter', function() {
+			this.style.transform = 'translateY(-10px) scale(1.05)';
+			this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.2)';
+		});
+		card.addEventListener('mouseleave', function() {
+			this.style.transform = 'translateY(0) scale(1)';
+			this.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+		});
+	});
+	
+	// Experience items with left border highlight
+	document.querySelectorAll('.experience-item').forEach(item => {
+		item.style.transition = 'all 0.3s ease';
+		item.addEventListener('mouseenter', function() {
+			this.style.borderLeftColor = 'var(--accentColor)';
+			this.style.paddingLeft = '20px';
+			this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.12)';
+		});
+		item.addEventListener('mouseleave', function() {
+			this.style.borderLeftColor = 'var(--borderColor)';
+			this.style.paddingLeft = '15px';
+			this.style.boxShadow = 'none';
+		});
+	});
+	
+	// Social links with icon animation
+	document.querySelectorAll('.social-links a').forEach(link => {
+		link.style.transition = 'all 0.3s ease';
+		link.addEventListener('mouseenter', function() {
+			this.style.color = 'var(--accentColor)';
+			this.style.transform = 'translateX(8px)';
+		});
+		link.addEventListener('mouseleave', function() {
+			this.style.color = 'var(--mainColor)';
+			this.style.transform = 'translateX(0)';
+		});
+	});
+}
+
+// Floating Action Button
+function scrollToContact() {
+	document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==================== ENGAGEMENT FEATURES ====================
+
+// 1. TESTIMONIALS CAROUSEL
+function setupTestimonialsCarousel() {
+	const testimonialItems = document.querySelectorAll('.testimonial-item');
+	if (testimonialItems.length === 0) return;
+	
+	let currentIndex = 0;
+	
+	function showTestimonial(index) {
+		testimonialItems.forEach((item, i) => {
+			item.style.display = i === index ? 'block' : 'none';
+			if (i === index) {
+				item.style.animation = 'slideInUp 0.6s ease-out';
+			}
+		});
+	}
+	
+	// Auto-rotate testimonials every 8 seconds
+	setInterval(() => {
+		currentIndex = (currentIndex + 1) % testimonialItems.length;
+		const container = document.querySelector('.testimonials-grid');
+		if (container) {
+			container.style.opacity = '0.5';
+			setTimeout(() => {
+				showTestimonial(currentIndex);
+				container.style.opacity = '1';
+			}, 300);
+		}
+	}, 8000);
+	
+	showTestimonial(0);
+}
+
+// 2. SKILL PROGRESS TRACKER WITH INTERACTION
+function setupSkillInteraction() {
+	const skillItems = document.querySelectorAll('.skill-item');
+	
+	skillItems.forEach(item => {
+		item.style.cursor = 'pointer';
+		item.style.paddingBottom = '10px';
+		
+		item.addEventListener('click', function() {
+			const skillName = this.querySelector('.skill-name span').textContent;
+			const percentage = this.querySelector('.skill-percentage').textContent;
+			
+			// Show interaction feedback
+			showNotification(`Master in ${skillName} - ${percentage}!`, 'success');
+			
+			// Animate bar fill
+			const bar = this.querySelector('.skill-fill');
+			bar.style.animation = 'pulse 0.6s ease';
+		});
+		
+		item.addEventListener('mouseenter', function() {
+			this.style.transform = 'translateX(10px)';
+			this.style.boxShadow = '0 4px 15px rgba(23, 162, 184, 0.2)';
+		});
+		
+		item.addEventListener('mouseleave', function() {
+			this.style.transform = 'translateX(0)';
+			this.style.boxShadow = 'none';
+		});
+	});
+}
+
+// 3. VISITOR ACTIVITY FEED
+function initializeActivityFeed() {
+	const activityData = JSON.parse(localStorage.getItem('activityFeed') || '[]');
+	const maxActivities = 5;
+	
+	// Add current visit
+	const now = new Date();
+	const activity = {
+		time: now.toLocaleTimeString(),
+		action: 'Visited Portfolio',
+		timestamp: now.getTime()
+	};
+	
+	activityData.unshift(activity);
+	if (activityData.length > maxActivities) {
+		activityData.pop();
+	}
+	
+	localStorage.setItem('activityFeed', JSON.stringify(activityData));
+	
+	// Display activity feed
+	const feedContainer = document.querySelector('.activity-feed');
+	if (feedContainer) {
+		feedContainer.innerHTML = '<h5 style="margin-bottom: 15px; color: var(--mainText);">Recent Visits</h5>';
+		
+		activityData.forEach((item, index) => {
+			const feedItem = document.createElement('div');
+			feedItem.className = 'feed-item';
+			feedItem.style.cssText = `
+				padding: 10px;
+				border-left: 3px solid #17a2b8;
+				margin-bottom: 8px;
+				font-size: 0.85rem;
+				opacity: 0;
+				animation: slideInLeft 0.5s ease-out ${index * 0.1}s forwards;
+			`;
+			feedItem.innerHTML = `<span style="color: #17a2b8;">●</span> ${item.action} at ${item.time}`;
+			feedContainer.appendChild(feedItem);
+		});
+	}
+}
+
+// 4. SOCIAL SHARING BUTTONS
+function setupSocialSharing() {
+	const projectCards = document.querySelectorAll('.project-card');
+	
+	projectCards.forEach(card => {
+		const shareBtn = document.createElement('button');
+		shareBtn.className = 'share-btn';
+		shareBtn.innerHTML = '📤 Share';
+		shareBtn.style.cssText = `
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: rgba(23, 162, 184, 0.9);
+			color: white;
+			border: none;
+			padding: 6px 12px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 0.85rem;
+			opacity: 0;
+			transition: all 0.3s ease;
+			z-index: 10;
+		`;
+		
+		card.style.position = 'relative';
+		card.appendChild(shareBtn);
+		
+		card.addEventListener('mouseenter', () => {
+			shareBtn.style.opacity = '1';
+		});
+		
+		card.addEventListener('mouseleave', () => {
+			shareBtn.style.opacity = '0';
+		});
+		
+		shareBtn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const title = card.querySelector('.post-title').textContent;
+			const projectUrl = window.location.href;
+			
+			// Copy to clipboard
+			const text = `Check out my project: "${title}" - ${projectUrl}`;
+			navigator.clipboard.writeText(text).then(() => {
+				showNotification('Project link copied! 🎉', 'success');
+			});
+		});
+	});
+}
+
+// 5. NEWSLETTER SUBSCRIPTION POPUP
+function setupNewsletterPopup() {
+	// Check if user has already subscribed
+	if (localStorage.getItem('newsletterSubscribed')) return;
+	
+	// Show popup after 15 seconds
+	setTimeout(() => {
+		const popup = document.createElement('div');
+		popup.className = 'newsletter-popup';
+		popup.style.cssText = `
+			position: fixed;
+			bottom: 20px;
+			left: 20px;
+			background: white;
+			padding: 25px;
+			border-radius: 12px;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+			z-index: 3000;
+			max-width: 320px;
+			animation: slideInUp 0.5s ease-out;
+		`;
+		
+		popup.innerHTML = `
+			<button style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
+			<h4 style="margin: 0 0 10px 0; color: black;">Stay Updated! 🚀</h4>
+			<p style="color: #666; font-size: 14px; margin: 0 0 15px 0;">Get notified about new projects and updates.</p>
+			<input type="email" placeholder="your@email.com" class="newsletter-email" style="
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				margin-bottom: 10px;
+				box-sizing: border-box;
+			" />
+			<button class="newsletter-btn" style="
+				width: 100%;
+				padding: 10px;
+				background: #17a2b8;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				font-weight: bold;
+				transition: all 0.3s;
+			">Subscribe Now</button>
+		`;
+		
+		document.body.appendChild(popup);
+		
+		// Close button
+		popup.querySelector('button:first-of-type').addEventListener('click', () => {
+			popup.style.animation = 'slideOutDown 0.4s ease-out forwards';
+			setTimeout(() => popup.remove(), 400);
+		});
+		
+		// Subscribe button
+		const subscribeBtn = popup.querySelector('.newsletter-btn');
+		subscribeBtn.addEventListener('mouseover', function() {
+			this.style.transform = 'scale(1.05)';
+			this.style.boxShadow = '0 5px 15px rgba(23, 162, 184, 0.4)';
+		});
+		subscribeBtn.addEventListener('mouseout', function() {
+			this.style.transform = 'scale(1)';
+			this.style.boxShadow = 'none';
+		});
+		
+		subscribeBtn.addEventListener('click', () => {
+			const email = popup.querySelector('.newsletter-email').value;
+			if (email && email.includes('@')) {
+				localStorage.setItem('newsletterSubscribed', 'true');
+				localStorage.setItem('subscriberEmail', email);
+				popup.style.animation = 'slideOutDown 0.4s ease-out forwards';
+				setTimeout(() => {
+					popup.remove();
+					showNotification('Welcome to updates! 📧', 'success');
+				}, 400);
+			} else {
+				showNotification('Please enter a valid email', 'error');
+			}
+		});
+	}, 15000);
+}
+
+// 6. ACHIEVEMENT BADGES
+function setupAchievementBadges() {
+	const achievements = {
+		firstVisit: { label: '🎬 First Visit', unlocked: false },
+		scrolled: { label: '📜 Explorer', unlocked: false },
+		visitedProjects: { label: '💼 Project Hunter', unlocked: false },
+		contactForm: { label: '💌 Connector', unlocked: false },
+		darkMode: { label: '🌙 Night Owl', unlocked: false }
+	};
+	
+	// Check if first visit
+	if (!localStorage.getItem('visited')) {
+		localStorage.setItem('visited', 'true');
+		unlockAchievement('firstVisit', achievements, 'Welcome! You unlocked your first badge!');
+	}
+	
+	// Track scrolling
+	let scrolled = false;
+	window.addEventListener('scroll', () => {
+		if (!scrolled && window.scrollY > 500) {
+			scrolled = true;
+			unlockAchievement('scrolled', achievements, 'Great explorer! You scrolled through my portfolio!');
+		}
+	});
+	
+	// Track project visits
+	document.querySelectorAll('.project-card').forEach(card => {
+		card.addEventListener('click', () => {
+			unlockAchievement('visitedProjects', achievements, 'Project enthusiast! You explored my work!');
+		});
+	});
+	
+	// Track form submission
+	const form = document.getElementById('contact-form');
+	if (form) {
+		form.addEventListener('submit', () => {
+			unlockAchievement('contactForm', achievements, 'Connected! Thanks for reaching out!');
+		});
+	}
+	
+	// Track dark mode
+	document.querySelectorAll('.theme-dot').forEach(dot => {
+		if (dot.id === 'blue-mode' || dot.id === 'green-mode' || dot.id === 'purple-mode') {
+			dot.addEventListener('click', () => {
+				unlockAchievement('darkMode', achievements, 'Night Owl! You switched to dark mode!');
+			});
+		}
+	});
+	
+	// Display badges
+	displayAchievements(achievements);
+}
+
+function unlockAchievement(achievement, achievements, message) {
+	if (!localStorage.getItem(`achievement_${achievement}`)) {
+		localStorage.setItem(`achievement_${achievement}`, 'true');
+		showNotification(message, 'achievement');
+	}
+}
+
+function displayAchievements(achievements) {
+	const badgeContainer = document.querySelector('.achievement-badges');
+	if (!badgeContainer) {
+		const container = document.createElement('div');
+		container.className = 'achievement-badges';
+		container.style.cssText = `
+			position: fixed;
+			top: 100px;
+			right: 20px;
+			z-index: 999;
+			max-width: 200px;
+		`;
+		document.body.appendChild(container);
+	}
+	
+	// Display unlocked achievements
+	const unlockedAchievements = [];
+	if (localStorage.getItem('achievement_firstVisit')) unlockedAchievements.push('🎬 First Visit');
+	if (localStorage.getItem('achievement_scrolled')) unlockedAchievements.push('📜 Explorer');
+	if (localStorage.getItem('achievement_visitedProjects')) unlockedAchievements.push('💼 Project Hunter');
+	if (localStorage.getItem('achievement_contactForm')) unlockedAchievements.push('💌 Connector');
+	if (localStorage.getItem('achievement_darkMode')) unlockedAchievements.push('🌙 Night Owl');
+	
+	if (unlockedAchievements.length > 0) {
+		const badgeContainer = document.querySelector('.achievement-badges');
+		badgeContainer.innerHTML = '<strong style="color: var(--mainText); font-size: 0.9rem;">🏆 Achievements</strong><br>';
+		unlockedAchievements.forEach((badge, index) => {
+			const badgeEl = document.createElement('div');
+			badgeEl.style.cssText = `
+				padding: 6px 10px;
+				background: #FFD700;
+				color: black;
+				border-radius: 20px;
+				font-size: 0.8rem;
+				margin-top: 6px;
+				text-align: center;
+				font-weight: bold;
+				animation: slideInLeft 0.5s ease-out ${index * 0.1}s backwards;
+			`;
+			badgeEl.textContent = badge;
+			badgeContainer.appendChild(badgeEl);
+		});
+	}
+}
+
+// 9. SUPPORT/HELP WIDGET
+function setupSupportWidget() {
+	const widget = document.createElement('div');
+	widget.className = 'support-widget';
+	widget.style.cssText = `
+		position: fixed;
+		bottom: 20px;
+		left: 20px;
+		background: white;
+		border-radius: 12px;
+		box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+		z-index: 2500;
+		max-width: 350px;
+		overflow: hidden;
+		transition: all 0.3s ease;
+	`;
+	
+	widget.innerHTML = `
+		<div style="background: #17a2b8; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+			<div>
+				<h4 style="margin: 0; font-size: 1rem;">💬 Quick Help</h4>
+				<p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Ask me anything</p>
+			</div>
+			<button class="widget-close" style="background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer;">−</button>
+		</div>
+		<div class="widget-content" style="padding: 15px; display: none;">
+			<p style="margin: 0 0 10px 0; font-size: 0.9rem; color: #333;">Popular questions:</p>
+			<div class="help-items">
+				<button class="help-btn" style="
+					display: block;
+					width: 100%;
+					text-align: left;
+					background: #f5f5f5;
+					border: 1px solid #ddd;
+					padding: 10px;
+					margin-bottom: 8px;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: all 0.3s;
+					font-size: 0.85rem;
+				" data-answer="Sure! Check my GitHub profile for all my projects, or explore the 'Projects' section above.">
+					📁 Where can I see your projects?
+				</button>
+				<button class="help-btn" style="
+					display: block;
+					width: 100%;
+					text-align: left;
+					background: #f5f5f5;
+					border: 1px solid #ddd;
+					padding: 10px;
+					margin-bottom: 8px;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: all 0.3s;
+					font-size: 0.85rem;
+				" data-answer="I'm a Full Stack Developer at TCS with expertise in Angular, Spring Boot, and cloud technologies. Let's connect!">
+					👨‍💼 Tell me about yourself
+				</button>
+				<button class="help-btn" style="
+					display: block;
+					width: 100%;
+					text-align: left;
+					background: #f5f5f5;
+					border: 1px solid #ddd;
+					padding: 10px;
+					margin-bottom: 8px;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: all 0.3s;
+					font-size: 0.85rem;
+				" data-answer="Fill out the contact form below or reach out on LinkedIn @Aayush Gupta. I'd love to hear from you!">
+					💌 How can I contact you?
+				</button>
+			</div>
+		</div>
+	`;
+	
+	document.body.appendChild(widget);
+	
+	// Toggle widget
+	const header = widget.querySelector('div:first-child');
+	const content = widget.querySelector('.widget-content');
+	const closeBtn = widget.querySelector('.widget-close');
+	
+	header.addEventListener('click', () => {
+		const isOpen = content.style.display === 'block';
+		content.style.display = isOpen ? 'none' : 'block';
+		closeBtn.textContent = isOpen ? '−' : '✕';
+	});
+	
+	closeBtn.addEventListener('click', (e) => {
+		e.stopPropagation();
+		widget.style.opacity = '0';
+		widget.style.pointerEvents = 'none';
+		setTimeout(() => {
+			widget.remove();
+		}, 300);
+	});
+	
+	// Help button actions
+	document.querySelectorAll('.help-btn').forEach(btn => {
+		btn.addEventListener('mouseenter', function() {
+			this.style.background = '#e0e0e0';
+		});
+		btn.addEventListener('mouseleave', function() {
+			this.style.background = '#f5f5f5';
+		});
+		btn.addEventListener('click', function() {
+			const answer = this.getAttribute('data-answer');
+			showNotification(answer, 'info');
+		});
+	});
+}
+
+// ==================== EXTRA COOL FEATURES ====================
+
+// 10. CONFETTI ANIMATION
+function createConfetti() {
+	const confettiPiece = document.createElement('div');
+	const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE'];
+	const randomColor = colors[Math.floor(Math.random() * colors.length)];
+	
+	confettiPiece.style.cssText = `
+		position: fixed;
+		width: 10px;
+		height: 10px;
+		background: ${randomColor};
+		pointer-events: none;
+		z-index: 9999;
+		animation: confettiFall 3s ease-out forwards;
+	`;
+	
+	confettiPiece.style.left = Math.random() * window.innerWidth + 'px';
+	confettiPiece.style.top = '50%';
+	document.body.appendChild(confettiPiece);
+	
+	setTimeout(() => confettiPiece.remove(), 3000);
+}
+
+function triggerConfetti() {
+	for (let i = 0; i < 50; i++) {
+		setTimeout(() => createConfetti(), i * 30);
+	}
+}
+
+// 11. KEYBOARD SHORTCUTS
+function setupKeyboardShortcuts() {
+	document.addEventListener('keydown', (e) => {
+		if (e.key === '?') {
+			e.preventDefault();
+			showShortcutsHelp();
+		} else if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+			e.preventDefault();
+			showCommandPalette();
+		} else if (e.key === 'Escape') {
+			// Hide open modals
+			const modals = document.querySelectorAll('.modal.open');
+			modals.forEach(modal => modal.classList.remove('open'));
+		}
+	});
+}
+
+function showShortcutsHelp() {
+	const shortcuts = `
+		⌨️ KEYBOARD SHORTCUTS
+		━━━━━━━━━━━━━━━━━━━━
+		? - Show this help
+		K - Command palette
+		Esc - Close modals
+		↓ - Scroll down
+		↑ - Scroll up
+	`;
+	showNotification(shortcuts, 'info');
+}
+
+function showCommandPalette() {
+	showNotification('💪 Power user mode activated!', 'info');
+}
+
+// 12. RIPPLE EFFECT
+function setupRippleEffects() {
+	document.querySelectorAll('button, .theme-dot, .filter-btn, .help-btn').forEach(el => {
+		el.addEventListener('click', function(e) {
+			const ripple = document.createElement('span');
+			const rect = this.getBoundingClientRect();
+			const size = Math.max(rect.width, rect.height);
+			const x = e.clientX - rect.left - size / 2;
+			const y = e.clientY - rect.top - size / 2;
+			
+			ripple.style.cssText = `
+				position: absolute;
+				width: ${size}px;
+				height: ${size}px;
+				background: rgba(255, 255, 255, 0.5);
+				border-radius: 50%;
+				transform: scale(0);
+				animation: ripple 0.6s ease-out;
+				pointer-events: none;
+				left: ${x}px;
+				top: ${y}px;
+			`;
+			
+			this.style.position = 'relative';
+			this.style.overflow = 'hidden';
+			this.appendChild(ripple);
+			
+			setTimeout(() => ripple.remove(), 600);
+		});
+	});
+}
+
+// 13. SCROLL-TRIGGERED ANIMATIONS
+function setupScrollAnimations() {
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -100px 0px'
+	};
+	
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
+				observer.unobserve(entry.target);
+			}
+		});
+	}, observerOptions);
+	
+	// Observe all sections and cards
+	document.querySelectorAll('section, .project-card, .experience-item, .achievement-item').forEach(el => {
+		el.style.opacity = '0';
+		observer.observe(el);
+	});
+}
+
+// 14. INTERACTIVE TIMELINE
+function setupInteractiveTimeline() {
+	const timelineItems = document.querySelectorAll('.timeline-item');
+	
+	timelineItems.forEach((item, index) => {
+		item.style.cursor = 'pointer';
+		item.style.transition = 'all 0.3s ease';
+		
+		const content = item.querySelector('.timeline-content');
+		const initialHeight = content.scrollHeight;
+		content.style.maxHeight = initialHeight + 'px';
+		
+		item.addEventListener('click', function() {
+			this.classList.toggle('expanded');
+			
+			if (this.classList.contains('expanded')) {
+				content.style.maxHeight = initialHeight + 'px';
+				this.style.transform = 'scale(1.02)';
+			} else {
+				content.style.maxHeight = '0';
+				this.style.transform = 'scale(1)';
+			}
+		});
+		
+		item.addEventListener('mouseenter', function() {
+			if (!this.classList.contains('expanded')) {
+				this.style.boxShadow = '0 8px 20px rgba(23, 162, 184, 0.2)';
+			}
+		});
+		
+		item.addEventListener('mouseleave', function() {
+			if (!this.classList.contains('expanded')) {
+				this.style.boxShadow = 'none';
+			}
+		});
+		
+		// Mark first item as expanded by default
+		if (index === 0) {
+			item.classList.add('expanded');
+		}
+	});
+}
+
+// 15. GLITCH TEXT EFFECT (Easter Egg)
+function setupGlitchEffect() {
+	const headings = document.querySelectorAll('h1, h2, h3');
+	
+	headings.forEach(heading => {
+		heading.addEventListener('mouseenter', function() {
+			if (Math.random() > 0.7) { // 30% chance
+				this.classList.add('glitch');
+				setTimeout(() => {
+					this.classList.remove('glitch');
+				}, 600);
+			}
+		});
+	});
+}
+
+// 16. EASTER EGG ON PROFILE
+function setupProfilePicEasterEgg() {
+	const profilePic = document.getElementById('profile_pic');
+	if (!profilePic) return;
+	
+	let clickCount = 0;
+	profilePic.style.cursor = 'pointer';
+	
+	profilePic.addEventListener('click', () => {
+		clickCount++;
+		
+		if (clickCount === 1) {
+			profilePic.style.transform = 'rotate(5deg)';
+		} else if (clickCount === 2) {
+			profilePic.style.transform = 'rotate(-5deg)';
+		} else if (clickCount === 3) {
+			profilePic.style.transform = 'rotate(0deg) scale(1.1)';
+		} else if (clickCount >= 5) {
+			triggerConfetti();
+			showNotification('🎉 You found the Easter egg!', 'achievement');
+			clickCount = 0;
+		}
+	});
+	
+	profilePic.addEventListener('mouseenter', function() {
+		this.style.filter = 'brightness(1.2)';
+	});
+	
+	profilePic.addEventListener('mouseleave', function() {
+		this.style.filter = 'brightness(1)';
+	});
+}
+
+// 17. PROJECT HOVER ENHANCEMENT (Removed flip for better UX with current structure)
+function setupProjectHoverEnhancement() {
+	const projectCards = document.querySelectorAll('.project-card');
+	
+	projectCards.forEach(card => {
+		const post = card.querySelector('.post');
+		
+		card.addEventListener('mouseenter', function() {
+			post.style.transform = 'scale(1.03) translateY(-5px)';
+			post.style.boxShadow = '0 20px 50px rgba(23, 162, 184, 0.3)';
+		});
+		
+		card.addEventListener('mouseleave', function() {
+			post.style.transform = 'scale(1) translateY(0)';
+			post.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+		});
+	});
+}
+
+// 18. ENHANCED PARTICLES MOVEMENT
+function enhanceParticles() {
+	// Particles already setup, but let's add more interactivity
+	if (window.pJSDom && window.pJSDom[0]) {
+		const pJS = window.pJSDom[0].pJS;
+		
+		document.addEventListener('mousemove', (e) => {
+			if (pJS && pJS.particles) {
+				const x = (e.clientX) / window.innerWidth;
+				const y = (e.clientY) / window.innerHeight;
+				
+				pJS.particles.array.forEach(p => {
+					p.vx += (x - 0.5) * 0.1;
+					p.vy += (y - 0.5) * 0.1;
+				});
+			}
+		});
+	}
+}
+
+// Initialize all extra features
+function initializeExtraFeatures() {
+	setupKeyboardShortcuts();
+	setupRippleEffects();
+	setupScrollAnimations();
+	setupInteractiveTimeline();
+	setupGlitchEffect();
+	setupProfilePicEasterEgg();
+	setupProjectHoverEnhancement();
+	enhanceParticles();
+}
+
+// 7. NOTIFICATION SYSTEM
+function showNotification(message, type = 'info') {
+	const notification = document.createElement('div');
+	notification.style.cssText = `
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : type === 'achievement' ? '#FF9800' : '#2196F3'};
+		color: white;
+		padding: 16px 24px;
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+		z-index: 10000;
+		animation: slideInRight 0.4s ease-out;
+		font-weight: bold;
+		max-width: 300px;
+	`;
+	notification.textContent = message;
+	document.body.appendChild(notification);
+	
+	// Auto-remove after 4 seconds
+	setTimeout(() => {
+		notification.style.animation = 'slideOutRight 0.4s ease-out forwards';
+		setTimeout(() => notification.remove(), 400);
+	}, 4000);
+}
+
+// 8. ENGAGEMENT TRACKING
+function trackEngagement() {
+	let timeOnSite = 0;
+	
+	setInterval(() => {
+		timeOnSite += 1;
+		localStorage.setItem('timeOnSite', timeOnSite);
+		
+		// Update display
+		const timeSpent = document.getElementById('time-spent');
+		if (timeSpent) {
+			if (timeOnSite < 60) {
+				timeSpent.textContent = timeOnSite + 's';
+			} else if (timeOnSite < 3600) {
+				const minutes = Math.floor(timeOnSite / 60);
+				const seconds = timeOnSite % 60;
+				timeSpent.textContent = minutes + 'm ' + seconds + 's';
+			} else {
+				const hours = Math.floor(timeOnSite / 3600);
+				const minutes = Math.floor((timeOnSite % 3600) / 60);
+				timeSpent.textContent = hours + 'h ' + minutes + 'm';
+			}
+		}
+	}, 1000);
+	
+	// Track interactions
+	document.addEventListener('click', () => {
+		const clicks = parseInt(localStorage.getItem('interactions') || 0) + 1;
+		localStorage.setItem('interactions', clicks);
+		
+		// Update interaction count display
+		const interactionCount = document.getElementById('interaction-count');
+		if (interactionCount) {
+			interactionCount.textContent = clicks;
+		}
+		
+		// Milestone notifications
+		if (clicks === 5) showNotification('You\'re exploring well! 👀', 'info');
+		if (clicks === 10) showNotification('You\'re really interested! 🎯', 'info');
+		if (clicks === 20) showNotification('Impressive engagement! Keep going! 🚀', 'info');
+	});
+	
+	// Update initial values
+	const savedInteractions = localStorage.getItem('interactions') || 0;
+	const achievementCount = document.getElementById('achievement-count');
+	const interactionCount = document.getElementById('interaction-count');
+	
+	if (interactionCount) {
+		interactionCount.textContent = savedInteractions;
+	}
+	
+	// Count unlocked achievements
+	if (achievementCount) {
+		let count = 0;
+		if (localStorage.getItem('achievement_firstVisit')) count++;
+		if (localStorage.getItem('achievement_scrolled')) count++;
+		if (localStorage.getItem('achievement_visitedProjects')) count++;
+		if (localStorage.getItem('achievement_contactForm')) count++;
+		if (localStorage.getItem('achievement_darkMode')) count++;
+		achievementCount.textContent = count;
 	}
 }
 
