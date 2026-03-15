@@ -1,4 +1,4 @@
-console.log('Its working')
+// script loaded
 
 // Theme switching
 let theme = localStorage.getItem('theme')
@@ -63,15 +63,20 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 	};
 
 	try {
-		// Check if Firebase is initialized
-		if (!window.db) {
-			throw new Error('Firebase not initialized. Please configure your Firebase project.');
+		// Use Firestore if available and helpers exposed
+		if (window.db && window.addDoc && window.collection) {
+			await window.addDoc(window.collection(window.db, 'contacts'), formData);
+			messageDiv.innerHTML = '<p style="color: green;">Message sent successfully!</p>';
+			this.reset();
+		} else {
+			// Fallback: store message locally so owner can retrieve it later
+			const backupKey = 'contacts_backup';
+			const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
+			existing.push(formData);
+			localStorage.setItem(backupKey, JSON.stringify(existing));
+			messageDiv.innerHTML = '<p style="color: orange;">Message saved locally (debug). Configure Firebase to enable sending.</p>';
+			this.reset();
 		}
-
-		await addDoc(collection(window.db, 'contacts'), formData);
-
-		messageDiv.innerHTML = '<p style="color: green;">Message sent successfully!</p>';
-		this.reset();
 	} catch (error) {
 		console.error('Error sending message:', error);
 		messageDiv.innerHTML = '<p style="color: red;">Error sending message. Please try again or contact directly.</p>';
@@ -120,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	fetchGitHubStats();
 	initializeAnimations();
 	setupProjectFilters();
+		setupProjectModalListeners();
 	setupScrollProgress();
 	setupSmoothScrolling();
 	
@@ -146,6 +152,59 @@ function setupScrollProgress() {
 		
 		progressBar.style.width = scrollPercent + '%';
 	});
+}
+
+// Project Modal Handlers
+function setupProjectModalListeners(){
+	const modal = document.getElementById('project-modal');
+	const closeBtn = modal.querySelector('.modal-close');
+
+	// Close when clicking close button
+	closeBtn.addEventListener('click', () => closeProjectModal());
+
+	// Close when clicking outside content
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) closeProjectModal();
+	});
+
+	// Intercept project links
+	document.querySelectorAll('.post-preview a').forEach(link => {
+		link.addEventListener('click', function(e){
+			e.preventDefault();
+			const card = this.closest('.project-card');
+			if (!card) return;
+			const titleEl = card.querySelector('.post-title');
+			const introEl = card.querySelector('.post-intro');
+			const imgEl = card.querySelector('.thumbnail');
+			const techEl = card.querySelector('.project-tech');
+
+			const data = {
+				title: titleEl ? titleEl.textContent : 'Project',
+				intro: introEl ? introEl.textContent : '',
+				img: imgEl ? imgEl.src : '',
+				tech: techEl ? techEl.textContent : ''
+			};
+
+			openProjectModal(data);
+		});
+	});
+}
+
+function openProjectModal(data){
+	const modal = document.getElementById('project-modal');
+	modal.querySelector('.modal-title').textContent = data.title || '';
+	modal.querySelector('.modal-intro').textContent = data.intro || '';
+	const img = modal.querySelector('.modal-img');
+	if (data.img) { img.src = data.img; img.style.display = 'block'; } else { img.style.display = 'none'; }
+	modal.querySelector('.modal-tech').textContent = data.tech || '';
+	modal.classList.add('open');
+	modal.setAttribute('aria-hidden','false');
+}
+
+function closeProjectModal(){
+	const modal = document.getElementById('project-modal');
+	modal.classList.remove('open');
+	modal.setAttribute('aria-hidden','true');
 }
 
 // Smooth Scrolling for Navigation Links
