@@ -66,6 +66,7 @@
 					
 
 					<ul id="navigation">
+						<li><a href="#" onclick="openResumeModal(); return false;" class="nav-resume-btn">📄 Download Resume</a></li>
 						<li><a href="#contact">Contact</a></li>
 
 					</ul>
@@ -96,13 +97,6 @@
 							<div id="corner-br" class="corner"></div>
 							<div id="corner-bl" class="corner"></div>
 						</div>
-					</div>
-
-					<div class="resume-cta">
-						<a href="resumes.pdf" target="_blank" class="resume-btn">
-							<span class="resume-icon">📄</span>
-							Download Resume
-						</a>
 					</div>
 				</div>
 			</div>
@@ -665,6 +659,23 @@
 					<h4 class="modal-title"></h4>
 					<p class="modal-intro"></p>
 					<div class="modal-tech"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Resume Preview Modal -->
+	<div id="resume-modal" class="modal" aria-hidden="true">
+		<div class="modal-content resume-modal-content" role="dialog" aria-modal="true">
+			<button class="modal-close" aria-label="Close resume preview">&times;</button>
+			<div class="modal-body">
+				<h3>Resume Preview</h3>
+				<div class="resume-preview">
+					<iframe src="resumes.pdf" width="100%" height="600px" style="border: none;"></iframe>
+				</div>
+				<div class="resume-download-options">
+					<a href="resumes.pdf" download class="resume-download-btn">Download PDF</a>
+					<!-- Add more formats if available -->
 				</div>
 			</div>
 		</div>
