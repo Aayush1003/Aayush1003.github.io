@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	initializeAnimations();
 	setupProjectFilters();
 	setupProjectModalListeners();
+	setupResumeModalListeners();
 	setupScrollProgress();
 	setupSmoothScrolling();
 	setupDynamicProjectCards();
@@ -206,6 +207,19 @@ function setupProjectModalListeners(){
 	});
 }
 
+function setupResumeModalListeners(){
+	const modal = document.getElementById('resume-modal');
+	const closeBtn = modal.querySelector('.modal-close');
+
+	// Close when clicking close button
+	closeBtn.addEventListener('click', () => closeResumeModal());
+
+	// Close when clicking outside content
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) closeResumeModal();
+	});
+}
+
 function openProjectModal(data){
 	const modal = document.getElementById('project-modal');
 	modal.querySelector('.modal-title').textContent = data.title || '';
@@ -234,6 +248,19 @@ function openProjectModal(data){
 
 function closeProjectModal(){
 	const modal = document.getElementById('project-modal');
+	modal.classList.remove('open');
+	modal.setAttribute('aria-hidden','true');
+}
+
+// Resume Modal Handlers
+function openResumeModal(){
+	const modal = document.getElementById('resume-modal');
+	modal.classList.add('open');
+	modal.setAttribute('aria-hidden','false');
+}
+
+function closeResumeModal(){
+	const modal = document.getElementById('resume-modal');
 	modal.classList.remove('open');
 	modal.setAttribute('aria-hidden','true');
 }

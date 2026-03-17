@@ -285,6 +285,36 @@ ul{
 	font-weight: 600;
 }
 
+.resume-modal-content {
+	max-width: 800px;
+}
+
+.resume-preview iframe {
+	width: 100%;
+	border: 1px solid var(--borderColor);
+	border-radius: 4px;
+}
+
+.resume-download-options {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.resume-download-btn {
+	display: inline-block;
+	background: var(--buttonColor);
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: background 0.3s;
+}
+
+.resume-download-btn:hover {
+	background: #333;
+}
+
 /* Responsive tweaks */
 @media (max-width: 900px) {
 	.intro-wrapper{ grid-template-columns: 1fr; gap: 20px; }
@@ -299,6 +329,7 @@ ul{
 @media (max-width: 480px){
 	#profile_pic{ height: 120px; width: 120px; }
 	.theme-dot{ height: 26px; width: 26px; }
+	.nav-resume-btn { font-size: 0.8rem; padding: 6px 12px; }
 }
 
 
@@ -312,6 +343,10 @@ ul{
 
 .greeting-wrapper h1 {
 	margin-bottom: 0.5rem;
+	font-size: clamp(2rem, 5vw, 3.5rem);
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
 }
 
 .subtitle {
@@ -349,6 +384,9 @@ ul{
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--mainColor);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
 #navigation a{
@@ -365,6 +403,28 @@ ul{
 	display: inline-block;
 	margin-right: 5px;
 	margin-left:5px;
+}
+
+.nav-resume-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: linear-gradient(135deg, var(--buttonColor) 0%, #17a2b8 100%);
+	color: white !important;
+	padding: 8px 16px;
+	border-radius: 20px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+	font-size: 0.9rem;
+}
+
+.nav-resume-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+	text-decoration: none;
+	color: white !important;
 }
 
 .dots-wrapper{
@@ -1543,6 +1603,7 @@ footer {
 }
 
 .engagement-stats {
+	display: none; /* Badges/gamification hidden - backend tracking continues */
 	background: var(--secondaryColor);
 	padding: 25px;
 	border-radius: 12px;
