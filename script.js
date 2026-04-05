@@ -126,34 +126,176 @@ if (contactForm) {
 			name: document.getElementById('name').value.trim(),
 			email: document.getElementById('email').value.trim(),
 			subject: document.getElementById('subject').value.trim(),
-			message: document.getElementById('message').value.trim(),
-			timestamp: new Date()
+			message: document.getElementById('message').value.trim()
 		};
 
 		try {
-			// Use Firestore if available and helpers exposed
-			if (window.db && window.addDoc && window.collection) {
-				await window.addDoc(window.collection(window.db, 'contacts'), formData);
-				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message sent successfully! I\'ll get back to you soon.</p>';
+			// Send email via EmailJS
+			if (window.emailjs) {
+				await emailjs.send('service_rqo828j', 'template_w87qlwp', {
+					to_email: 'aayushgupta047@gmail.com',
+					from_name: formData.name,
+					from_email: formData.email,
+					subject: formData.subject,
+					message: formData.message
+				});
+				
+				// Show success message with animations
+				messageDiv.innerHTML = `
+					<div class="success-message">
+						<div class="message-icon">✓</div>
+						<h5>Message Delivered Successfully! 🎉</h5>
+						<p>Thank you ${formData.name}, I'll get back to you soon!</p>
+					</div>
+				`;
+				messageDiv.classList.add('show');
+				createConfetti();
+				
+				// Reset form
 				this.reset();
-				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
+				fields.forEach(fieldId => {
+					document.getElementById(fieldId).classList.remove('error');
+					document.getElementById(fieldId + '-error').textContent = '';
+				});
+				
+				// Clear message after 5 seconds
+				setTimeout(() => {
+					messageDiv.innerHTML = '';
+					messageDiv.classList.remove('show');
+				}, 5000);
 			} else {
-				// Fallback: store message locally so owner can retrieve it later
-				const backupKey = 'contacts_backup';
-				const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
-				existing.push(formData);
-				localStorage.setItem(backupKey, JSON.stringify(existing));
-				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message saved locally. Configure Firebase to enable sending.</p>';
-				this.reset();
-				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
+				throw new Error('EmailJS not initialized');
 			}
 		} catch (error) {
 			console.error('Error sending message:', error);
-			messageDiv.innerHTML = '<p style="color: #dc3545; font-weight: 500;">✗ Error sending message. Please try again or contact directly.</p>';
+			messageDiv.innerHTML = `
+				<div class="warning-message">
+					<div class="message-icon">⚠</div>
+					<p>Error sending message. Please try again or contact directly.</p>
+				</div>
+			`;
+			messageDiv.classList.add('show');
 		} finally {
 			submitBtn.textContent = 'Send Message';
 			submitBtn.disabled = false;
 		}
+	});
+}
+
+// Initialize particle animations
+function initializeParticleAnimations() {
+	const style = document.createElement('style');
+	style.textContent = `
+		@keyframes particleFloat {
+			0% {
+				opacity: 1;
+				transform: translate(0, 0);
+			}
+			100% {
+				opacity: 0;
+				transform: translate(var(--tx, 0px), var(--ty, 0px));
+			}
+		}
+		
+		@keyframes confetti-fall {
+			0% {
+				opacity: 1;
+				transform: translate(0, 0) rotate(0deg);
+			}
+			100% {
+				opacity: 0;
+				transform: translate(var(--tx, 0px), 300px) rotate(360deg);
+			}
+		}
+	`;
+	document.head.appendChild(style);
+}
+
+// Create floating particles on form interaction
+function createFloatingParticles(x, y) {
+	const particleCount = 8;
+	const colors = ['#17a2b8', '#28a745', '#FFD700', '#FF69B4', '#87CEEB'];
+	
+	for (let i = 0; i < particleCount; i++) {
+		const particle = document.createElement('div');
+		const angle = (i / particleCount) * Math.PI * 2;
+		const velocity = 50 + Math.random() * 100;
+		const randomColor = colors[Math.floor(Math.random() * colors.length)];
+		
+		particle.style.position = 'fixed';
+		particle.style.left = x + 'px';
+		particle.style.top = y + 'px';
+		particle.style.width = '8px';
+		particle.style.height = '8px';
+		particle.style.borderRadius = '50%';
+		particle.style.backgroundColor = randomColor;
+		particle.style.pointerEvents = 'none';
+		particle.style.zIndex = '1000';
+		particle.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+		particle.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+		particle.style.animation = 'particleFloat 0.8s ease-out forwards';
+		
+		document.body.appendChild(particle);
+		setTimeout(() => particle.remove(), 800);
+	}
+}
+
+// Create confetti celebration
+function createConfetti() {
+	const colors = ['#17a2b8', '#28a745', '#FFD700', '#FF69B4', '#87CEEB'];
+	
+	for (let i = 0; i < 30; i++) {
+		const confetti = document.createElement('div');
+		const randomColor = colors[Math.floor(Math.random() * colors.length)];
+		const startX = Math.random() * window.innerWidth;
+		
+		confetti.style.position = 'fixed';
+		confetti.style.left = startX + 'px';
+		confetti.style.top = '-10px';
+		confetti.style.width = '10px';
+		confetti.style.height = '10px';
+		confetti.style.borderRadius = '50%';
+		confetti.style.backgroundColor = randomColor;
+		confetti.style.pointerEvents = 'none';
+		confetti.style.zIndex = '999';
+		confetti.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+		confetti.style.animation = 'confetti-fall 2s ease-in forwards';
+		
+		document.body.appendChild(confetti);
+		setTimeout(() => confetti.remove(), 2000);
+	}
+}
+
+// Setup contact form interactivity
+function setupContactFormInteractivity() {
+	const form = document.getElementById('contact-form');
+	if (!form) return;
+	
+	const fields = ['name', 'email', 'subject', 'message'];
+	
+	fields.forEach(fieldId => {
+		const field = document.getElementById(fieldId);
+		if (!field) return;
+		
+		// Add floating particles on focus
+		field.addEventListener('focus', function(e) {
+			createFloatingParticles(e.clientX, e.clientY);
+			this.style.boxShadow = '0 0 20px rgba(23, 162, 184, 0.4)';
+		});
+		
+		// Remove glow on blur
+		field.addEventListener('blur', function() {
+			if (!this.classList.contains('error')) {
+				this.style.boxShadow = '';
+			}
+		});
+		
+		// Add glow effect on input
+		field.addEventListener('input', function() {
+			if (this.value.length > 0) {
+				this.style.boxShadow = '0 0 20px rgba(23, 162, 184, 0.4)';
+			}
+		});
 	});
 }
 
@@ -205,6 +347,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	setupSmoothScrolling();
 	setupDynamicProjectCards();
 	addHoverEffects();
+	
+	// Initialize contact form features
+	initializeParticleAnimations();
+	setupContactFormInteractivity();
 	
 	// Engagement features
 	setupTestimonialsCarousel();

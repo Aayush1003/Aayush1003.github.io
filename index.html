@@ -683,21 +683,11 @@
 	<!-- Particles Background -->
 	<div id="particles-js"></div>
 
-	<!-- Firebase scripts -->
-	<script type="module">
-	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-	  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-	  const firebaseConfig = {
-	    apiKey: "YOUR_API_KEY",
-	    authDomain: "YOUR_PROJECT.firebaseapp.com",
-	    projectId: "YOUR_PROJECT",
-	    storageBucket: "YOUR_PROJECT.appspot.com",
-	    messagingSenderId: "123456789",
-	    appId: "YOUR_APP_ID"
-	  };
-
-	  const app = initializeApp(firebaseConfig);
+	<!-- EmailJS script -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+	<script type="text/javascript">
+		emailjs.init("Y-uUF6NpMZhRqBY4E");
+	</script>
 	  const db = getFirestore(app);
 
 	  window.firebaseApp = app;
