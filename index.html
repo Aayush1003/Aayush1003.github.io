@@ -592,10 +592,23 @@
 		</div>
 	</section>
 
-	<section class="s2">
+	<section class="s2 contact-section">
 		<div class="main-container">
 			<div id="contact"></div>
-			<h3 style="text-align: center;">Get In Touch</h3>
+			<div class="contact-header">
+				<h3>Get In Touch</h3>
+				<p class="contact-subtitle">Have a question or want to collaborate? I'd love to hear from you!</p>
+				<div class="contact-info-quick">
+					<div class="info-item">
+						<span class="info-icon">📧</span>
+						<span>aayushgupta047@gmail.com</span>
+					</div>
+					<div class="info-item">
+						<span class="info-icon">📍</span>
+						<span>Indore, India</span>
+					</div>
+				</div>
+			</div>
 
 			<form id="contact-form" novalidate>
 				<div class="form-group">
@@ -623,8 +636,7 @@
 				</div>
 
 				<button id="submit-btn" type="submit" class="submit-button">Send Message</button>
-				<div id="form-message" role="alert" aria-live="polite"></div>
-			</form>
+			<div id="form-message" role="alert" aria-live="polite" class="form-message"></div>
 		</div>
 	</section>
 
@@ -683,28 +695,13 @@
 	<!-- Particles Background -->
 	<div id="particles-js"></div>
 
-	<!-- Firebase scripts -->
-	<script type="module">
-	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-	  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-	  const firebaseConfig = {
-	    apiKey: "YOUR_API_KEY",
-	    authDomain: "YOUR_PROJECT.firebaseapp.com",
-	    projectId: "YOUR_PROJECT",
-	    storageBucket: "YOUR_PROJECT.appspot.com",
-	    messagingSenderId: "123456789",
-	    appId: "YOUR_APP_ID"
-	  };
-
-	  const app = initializeApp(firebaseConfig);
-	  const db = getFirestore(app);
-
-	  window.firebaseApp = app;
-	  window.db = db;
-	// expose Firestore helpers to non-module scripts (script.js expects global addDoc/collection)
-	window.addDoc = addDoc;
-	window.collection = collection;
+	<!-- EmailJS Script for Email Sending -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+	<script type="text/javascript">
+		(function(){
+			// Initialize EmailJS with your public key
+			emailJS.init("Y-uUF6NpMZhRqBY4E");
+		})();
 	</script>
 
 	<!-- Typing effect -->

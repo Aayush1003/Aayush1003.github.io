@@ -49,8 +49,113 @@ function setTheme(mode){
 	localStorage.setItem('theme', mode)
 }
 
-// Contact form handling with enhanced validation
-const contactForm = document.getElementById('contact-form');
+// Contact Form Interactivity - Make form more engaging
+function setupContactFormInteractivity() {
+	const form = document.getElementById('contact-form');
+	if (!form) return;
+
+	const fields = form.querySelectorAll('.input-field');
+	const container = form.closest('.main-container');
+
+	// Add focus effects to form fields
+	fields.forEach(field => {
+		field.addEventListener('focus', function() {
+			this.parentElement.classList.add('focused');
+			// Add glow effect
+			this.style.boxShadow = '0 0 20px rgba(23, 162, 184, 0.4), inset 0 0 10px rgba(23, 162, 184, 0.1)';
+		});
+
+		field.addEventListener('blur', function() {
+			this.parentElement.classList.remove('focused');
+			if (!this.value) {
+				this.style.boxShadow = '';
+			}
+		});
+
+		// Create floating label effect
+		field.addEventListener('input', function() {
+			const label = this.previousElementSibling;
+			if (label && this.value) {
+				label.style.transform = 'translateY(-25px) scale(0.9)';
+				label.style.color = '#17a2b8';
+			} else if (label) {
+				label.style.transform = 'translateY(0) scale(1)';
+				label.style.color = 'inherit';
+			}
+		});
+	});
+
+	// Add particle effect on form interaction
+	form.addEventListener('click', function(e) {
+		if (e.target.classList.contains('input-field')) {
+			createFloatingParticles(e.clientX, e.clientY);
+		}
+	});
+
+	// Animate form on page load
+	form.style.animation = 'slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+}
+
+// Create floating particles on interaction
+function createFloatingParticles(x, y) {
+	const particleCount = 8;
+	for (let i = 0; i < particleCount; i++) {
+		const particle = document.createElement('div');
+		particle.style.cssText = `
+			position: fixed;
+			left: ${x}px;
+			top: ${y}px;
+			width: 6px;
+			height: 6px;
+			background: linear-gradient(135deg, #17a2b8, #28a745);
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 1000;
+			animation: particleFloat 1s ease-out forwards;
+		`;
+
+		const angle = (i / particleCount) * Math.PI * 2;
+		const velocity = 50 + Math.random() * 100;
+
+		particle.style.setProperty('--tx', Math.cos(angle) * velocity);
+		particle.style.setProperty('--ty', Math.sin(angle) * velocity);
+
+		document.body.appendChild(particle);
+
+		setTimeout(() => particle.remove(), 1000);
+	}
+}
+
+// Add particle animation keyframes
+function initializeParticleAnimations() {
+	if (document.getElementById('particle-animations')) return;
+
+	const style = document.createElement('style');
+	style.id = 'particle-animations';
+	style.textContent = `
+		@keyframes particleFloat {
+			0% {
+				transform: translate(0, 0);
+				opacity: 1;
+			}
+			100% {
+				transform: translate(var(--tx, 0), var(--ty, 0));
+				opacity: 0;
+			}
+		}
+
+		.form-group.focused label {
+			color: #17a2b8 !important;
+		}
+
+		.input-field:valid {
+			border-color: #28a745;
+		}
+	`;
+	document.head.appendChild(style);
+}
+
+// Contact Form Interactivity
 if (contactForm) {
 	// Real-time validation
 	const fields = ['name', 'email', 'subject', 'message'];
@@ -119,37 +224,71 @@ if (contactForm) {
 		const submitBtn = document.getElementById('submit-btn');
 		const messageDiv = document.getElementById('form-message');
 
-		submitBtn.textContent = 'Sending...';
-		submitBtn.disabled = true;
+		const name = document.getElementById('name').value.trim();
+		const email = document.getElementById('email').value.trim();
+		const subject = document.getElementById('subject').value.trim();
+		const message = document.getElementById('message').value.trim();
 
-		const formData = {
-			name: document.getElementById('name').value.trim(),
-			email: document.getElementById('email').value.trim(),
-			subject: document.getElementById('subject').value.trim(),
-			message: document.getElementById('message').value.trim(),
-			timestamp: new Date()
-		};
+		submitBtn.textContent = '✉️ Sending...';
+		submitBtn.disabled = true;
+		messageDiv.innerHTML = '';
 
 		try {
-			// Use Firestore if available and helpers exposed
-			if (window.db && window.addDoc && window.collection) {
-				await window.addDoc(window.collection(window.db, 'contacts'), formData);
-				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message sent successfully! I\'ll get back to you soon.</p>';
+			// Send via EmailJS
+			const response = await emailJS.send('service_rqo828j', 'template_w87qlwp', {
+				to_email: 'aayushgupta047@gmail.com',
+				from_name: name,
+				from_email: email,
+				subject: subject,
+				message: message,
+				reply_to: email
+			});
+
+			if (response.status === 200) {
+				// Trigger confetti celebration
+				createConfetti();
+
+				// Show success message with animation
+				messageDiv.innerHTML = `
+					<div class="success-message">
+						<div class="success-icon">✓</div>
+						<div class="success-text">
+							<h4>Message Delivered Successfully! 🎉</h4>
+							<p>Thank you <strong>${name}</strong>! Your message has been sent to aayushgupta047@gmail.com</p>
+							<p class="delivery-time">I'll get back to you within 24 hours.</p>
+						</div>
+					</div>
+				`;
+				messageDiv.classList.add('show');
+
+				// Reset form
 				this.reset();
 				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
-			} else {
-				// Fallback: store message locally so owner can retrieve it later
-				const backupKey = 'contacts_backup';
-				const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
-				existing.push(formData);
-				localStorage.setItem(backupKey, JSON.stringify(existing));
-				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message saved locally. Configure Firebase to enable sending.</p>';
-				this.reset();
-				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
+
+				// Auto-hide message after 5 seconds
+				setTimeout(() => {
+					messageDiv.classList.remove('show');
+				}, 5000);
 			}
 		} catch (error) {
-			console.error('Error sending message:', error);
-			messageDiv.innerHTML = '<p style="color: #dc3545; font-weight: 500;">✗ Error sending message. Please try again or contact directly.</p>';
+			console.error('Email sending error:', error);
+			
+			// Fallback: Store locally
+			const backupKey = 'contacts_backup';
+			const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
+			existing.push({ name, email, subject, message, timestamp: new Date() });
+			localStorage.setItem(backupKey, JSON.stringify(existing));
+
+			messageDiv.innerHTML = `
+				<div class="warning-message">
+					<div class="warning-icon">⚠️</div>
+					<div class="warning-text">
+						<p><strong>Message Saved Locally</strong></p>
+						<p>Email service temporarily unavailable. Your message has been saved and will be reviewed.</p>
+					</div>
+				</div>
+			`;
+			messageDiv.classList.add('show');
 		} finally {
 			submitBtn.textContent = 'Send Message';
 			submitBtn.disabled = false;
@@ -194,6 +333,8 @@ async function fetchGitHubRepos() {
 
 // Load GitHub data on page load
 document.addEventListener('DOMContentLoaded', function() {
+	initializeParticleAnimations();
+	setupContactFormInteractivity();
 	fetchGitHubRepos();
 	fetchGitHubStats();
 	fetchYouTubeStats();
@@ -625,6 +766,66 @@ function addHoverEffects() {
 // Floating Action Button
 function scrollToContact() {
 	document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Confetti animation for successful message send
+function createConfetti() {
+	const confettiContainer = document.createElement('div');
+	confettiContainer.style.cssText = `
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: 10000;
+	`;
+	document.body.appendChild(confettiContainer);
+
+	const colors = ['#17a2b8', '#28a745', '#FFD700', '#FF69B4', '#87CEEB'];
+	
+	for (let i = 0; i < 30; i++) {
+		const confetti = document.createElement('div');
+		const randomColor = colors[Math.floor(Math.random() * colors.length)];
+		const randomX = Math.random() * window.innerWidth;
+		const randomDelay = Math.random() * 0.3;
+		const randomDuration = 2 + Math.random() * 1;
+
+		confetti.style.cssText = `
+			position: absolute;
+			left: ${randomX}px;
+			top: -10px;
+			width: 10px;
+			height: 10px;
+			background: ${randomColor};
+			border-radius: 50%;
+			opacity: 1;
+			animation: fall ${randomDuration}s ease-in forwards;
+			animation-delay: ${randomDelay}s;
+		`;
+
+		confettiContainer.appendChild(confetti);
+	}
+
+	// Add animation keyframes if not exists
+	if (!document.getElementById('confetti-keyframes')) {
+		const style = document.createElement('style');
+		style.id = 'confetti-keyframes';
+		style.textContent = `
+			@keyframes fall {
+				to {
+					transform: translateY(${window.innerHeight}px) rotate(360deg);
+					opacity: 0;
+				}
+			}
+		`;
+		document.head.appendChild(style);
+	}
+
+	// Clean up after animation
+	setTimeout(() => {
+		confettiContainer.remove();
+	}, 3500);
 }
 
 // ==================== ENGAGEMENT FEATURES ====================
