@@ -73,17 +73,17 @@
 				</nav>
 
 				<div class="left-column">
-					<img id="profile_pic" src="images/aayush.jpg">
+					<img id="profile_pic" src="images/aayush.jpg" role="img" alt="Profile picture of Aayush Gupta">
 					<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
 
-					<div id="theme-options-wrapper">
-						<div data-mode="light" id="light-mode" class="theme-dot"></div>
-						<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
-						<div data-mode="green" id="green-mode" class="theme-dot"></div>
-						<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
+					<div id="theme-options-wrapper" role="group" aria-label="Theme selection">
+						<button data-mode="light" id="light-mode" class="theme-dot" aria-label="Light theme" title="Light Theme"></button>
+						<button data-mode="blue" id="blue-mode" class="theme-dot" aria-label="Blue dark theme" title="Blue Dark Theme"></button>
+						<button data-mode="green" id="green-mode" class="theme-dot" aria-label="Green dark theme" title="Green Dark Theme"></button>
+						<button data-mode="purple" id="purple-mode" class="theme-dot" aria-label="Purple dark theme" title="Purple Dark Theme"></button>
 					</div>
 
-					<p id="settings-note">*Theme settings will be saved for<br>your next vist</p>
+					<p id="settings-note">*Theme settings will be saved for<br>your next visit</p>
 				</div>
 
 				<div class="right-column">
@@ -527,37 +527,6 @@
 		</div>
 	</section>
 
-	<!-- Activity Feed Section -->
-	<section class="s1 activity-section">
-		<div class="main-container">
-			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start;">
-				<div class="activity-feed-container">
-					<div class="activity-feed"></div>
-				</div>
-				<div class="engagement-stats">
-					<h3 style="margin-top: 0;">Engagement Insights</h3>
-					<div class="insight-item">
-						<span class="insight-icon">⏱️</span>
-						<span id="time-spent">0s</span> on this portfolio
-					</div>
-					<div class="insight-item">
-						<span class="insight-icon">🖱️</span>
-						<span id="interaction-count">0</span> interactions
-					</div>
-					<div class="insight-item">
-						<span class="insight-icon">⭐</span>
-						<span id="achievement-count">0</span> achievements unlocked
-					</div>
-					<div style="margin-top: 20px; padding: 15px; background: var(--secondaryColor); border-radius: 8px; border-left: 3px solid #17a2b8;">
-						<p style="margin: 0; font-size: 0.9rem; color: var(--secondaryText);">
-							<strong>💡 Pro Tip:</strong> Keep exploring to unlock hidden achievements and badges! Scroll, interact with projects, and try different themes.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<section class="s1">
 		<div class="main-container">
 			<h3 style="text-align: center;">Some of my past projects</h3>
@@ -628,21 +597,33 @@
 			<div id="contact"></div>
 			<h3 style="text-align: center;">Get In Touch</h3>
 
-			<form id="contact-form">
-				<label for="name">Name</label>
-				<input class="input-field" type="text" id="name" name="name" required>
+			<form id="contact-form" novalidate>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input class="input-field" type="text" id="name" name="name" required aria-required="true">
+					<span class="error-message" id="name-error"></span>
+				</div>
 
-				<label for="subject">Subject</label>
-				<input class="input-field" type="text" id="subject" name="subject" required>
+				<div class="form-group">
+					<label for="subject">Subject</label>
+					<input class="input-field" type="text" id="subject" name="subject" required aria-required="true">
+					<span class="error-message" id="subject-error"></span>
+				</div>
 
-				<label for="email">Email</label>
-				<input class="input-field" type="email" id="email" name="email" required>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input class="input-field" type="email" id="email" name="email" required aria-required="true">
+					<span class="error-message" id="email-error"></span>
+				</div>
 
-				<label for="message">Message</label>
-				<textarea class="input-field" id="message" name="message" required></textarea>
+				<div class="form-group">
+					<label for="message">Message</label>
+					<textarea class="input-field" id="message" name="message" required aria-required="true" rows="5"></textarea>
+					<span class="error-message" id="message-error"></span>
+				</div>
 
-				<input id="submit-btn" type="submit" value="Send">
-				<div id="form-message"></div>
+				<button id="submit-btn" type="submit" class="submit-button">Send Message</button>
+				<div id="form-message" role="alert" aria-live="polite"></div>
 			</form>
 		</div>
 	</section>
@@ -693,9 +674,9 @@
 
 	<!-- Floating Action Button -->
 	<div class="fab-container">
-		<div class="fab" onclick="scrollToContact()">
+		<button class="fab" onclick="scrollToContact()" aria-label="Scroll to contact section" title="Contact Me">
 			<span class="fab-icon">💬</span>
-		</div>
+		</button>
 		<div class="fab-label">Contact Me</div>
 	</div>
 

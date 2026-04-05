@@ -1,6 +1,6 @@
 // script loaded
 
-// Theme switching
+// Theme switching with enhanced feedback
 let theme = localStorage.getItem('theme')
 
 if(theme == null){
@@ -19,8 +19,13 @@ let themeDots = document.getElementsByClassName('theme-dot')
 for (var i=0; themeDots.length > i; i++){
 	themeDots[i].addEventListener('click', function(){
 		let mode = this.dataset.mode
-		console.log('Option clicked:', mode)
+		console.log('Theme selected:', mode)
 		setTheme(mode)
+		// Add visual feedback
+		this.style.transform = 'scale(1.2)';
+		setTimeout(() => {
+			this.style.transform = 'scale(1)';
+		}, 300);
 	})
 }
 
@@ -44,47 +49,115 @@ function setTheme(mode){
 	localStorage.setItem('theme', mode)
 }
 
-// Contact form handling
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-	e.preventDefault();
-
-	const submitBtn = document.getElementById('submit-btn');
-	const messageDiv = document.getElementById('form-message');
-
-	submitBtn.value = 'Sending...';
-	submitBtn.disabled = true;
-
-	const formData = {
-		name: document.getElementById('name').value,
-		email: document.getElementById('email').value,
-		subject: document.getElementById('subject').value,
-		message: document.getElementById('message').value,
-		timestamp: new Date()
-	};
-
-	try {
-		// Use Firestore if available and helpers exposed
-		if (window.db && window.addDoc && window.collection) {
-			await window.addDoc(window.collection(window.db, 'contacts'), formData);
-			messageDiv.innerHTML = '<p style="color: green;">Message sent successfully!</p>';
-			this.reset();
-		} else {
-			// Fallback: store message locally so owner can retrieve it later
-			const backupKey = 'contacts_backup';
-			const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
-			existing.push(formData);
-			localStorage.setItem(backupKey, JSON.stringify(existing));
-			messageDiv.innerHTML = '<p style="color: orange;">Message saved locally (debug). Configure Firebase to enable sending.</p>';
-			this.reset();
+// Contact form handling with enhanced validation
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+	// Real-time validation
+	const fields = ['name', 'email', 'subject', 'message'];
+	
+	fields.forEach(fieldId => {
+		const field = document.getElementById(fieldId);
+		if (field) {
+			field.addEventListener('blur', () => validateField(field));
+			field.addEventListener('input', () => {
+				if (field.classList.contains('error')) {
+					validateField(field);
+				}
+			});
 		}
-	} catch (error) {
-		console.error('Error sending message:', error);
-		messageDiv.innerHTML = '<p style="color: red;">Error sending message. Please try again or contact directly.</p>';
-	} finally {
-		submitBtn.value = 'Send';
-		submitBtn.disabled = false;
+	});
+
+	function validateField(field) {
+		const errorEl = document.getElementById(field.id + '-error');
+		let isValid = true;
+		let errorMessage = '';
+
+		if (field.id === 'email') {
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			isValid = emailRegex.test(field.value.trim());
+			errorMessage = 'Please enter a valid email address';
+		} else if (field.id === 'name') {
+			isValid = field.value.trim().length >= 2;
+			errorMessage = 'Name must be at least 2 characters';
+		} else if (field.id === 'subject') {
+			isValid = field.value.trim().length >= 3;
+			errorMessage = 'Subject must be at least 3 characters';
+		} else if (field.id === 'message') {
+			isValid = field.value.trim().length >= 10;
+			errorMessage = 'Message must be at least 10 characters';
+		}
+
+		if (!field.value.trim()) {
+			isValid = false;
+			errorMessage = 'This field is required';
+		}
+
+		if (isValid) {
+			field.classList.remove('error');
+			if (errorEl) errorEl.textContent = '';
+		} else {
+			field.classList.add('error');
+			if (errorEl) errorEl.textContent = errorMessage;
+		}
+
+		return isValid;
 	}
-});
+
+	contactForm.addEventListener('submit', async function(e) {
+		e.preventDefault();
+
+		// Validate all fields
+		let allValid = true;
+		fields.forEach(fieldId => {
+			if (!validateField(document.getElementById(fieldId))) {
+				allValid = false;
+			}
+		});
+
+		if (!allValid) return;
+
+		const submitBtn = document.getElementById('submit-btn');
+		const messageDiv = document.getElementById('form-message');
+
+		submitBtn.textContent = 'Sending...';
+		submitBtn.disabled = true;
+
+		const formData = {
+			name: document.getElementById('name').value.trim(),
+			email: document.getElementById('email').value.trim(),
+			subject: document.getElementById('subject').value.trim(),
+			message: document.getElementById('message').value.trim(),
+			timestamp: new Date()
+		};
+
+		try {
+			// Use Firestore if available and helpers exposed
+			if (window.db && window.addDoc && window.collection) {
+				await window.addDoc(window.collection(window.db, 'contacts'), formData);
+				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message sent successfully! I\'ll get back to you soon.</p>';
+				this.reset();
+				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
+			} else {
+				// Fallback: store message locally so owner can retrieve it later
+				const backupKey = 'contacts_backup';
+				const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
+				existing.push(formData);
+				localStorage.setItem(backupKey, JSON.stringify(existing));
+				messageDiv.innerHTML = '<p style="color: green; font-weight: 500;">✓ Message saved locally. Configure Firebase to enable sending.</p>';
+				this.reset();
+				fields.forEach(fieldId => document.getElementById(fieldId).classList.remove('error'));
+			}
+		} catch (error) {
+			console.error('Error sending message:', error);
+			messageDiv.innerHTML = '<p style="color: #dc3545; font-weight: 500;">✗ Error sending message. Please try again or contact directly.</p>';
+		} finally {
+			submitBtn.textContent = 'Send Message';
+			submitBtn.disabled = false;
+		}
+	});
+}
+
+// Contact form handling
 
 // GitHub API integration
 async function fetchGitHubRepos() {
@@ -139,22 +212,25 @@ document.addEventListener('DOMContentLoaded', function() {
 	initializeActivityFeed();
 	setupSocialSharing();
 	setupNewsletterPopup();
-	setupAchievementBadges();
 	trackEngagement();
 	setupSupportWidget();
 	
 	// Extra cool features
 	initializeExtraFeatures();
 	
-	// Hide loading screen after everything is loaded
+	// Handle loading screen fade out
 	window.addEventListener('load', () => {
 		setTimeout(() => {
 			const loadingScreen = document.getElementById('loading-screen');
-			loadingScreen.style.opacity = '0';
-			setTimeout(() => {
-				loadingScreen.style.display = 'none';
-			}, 500);
-		}, 1000);
+			if (loadingScreen) {
+				loadingScreen.style.transition = 'opacity 0.5s ease-out';
+				loadingScreen.style.opacity = '0';
+				loadingScreen.style.pointerEvents = 'none';
+				setTimeout(() => {
+					loadingScreen.style.display = 'none';
+				}, 500);
+			}
+		}, 800); // Reduced delay for faster transition
 	});
 });
 
@@ -285,55 +361,83 @@ function setupSmoothScrolling() {
 function animateCounters() {
 	const counters = document.querySelectorAll('.stat-number');
 	
-	counters.forEach(counter => {
-		const target = parseInt(counter.getAttribute('data-target'));
-		const increment = target / 100;
-		let current = 0;
-		
-		const timer = setInterval(() => {
-			current += increment;
-			if (current >= target) {
-				counter.textContent = target;
-				clearInterval(timer);
-			} else {
-				counter.textContent = Math.floor(current);
-			}
-		}, 30);
+	counters.forEach((counter, index) => {
+		// Add staggered animation
+		setTimeout(() => {
+			const target = parseInt(counter.getAttribute('data-target'));
+			let current = 0;
+			const duration = 2000; // 2 seconds
+			const increment = target / (duration / 16); // Assuming 60fps
+			
+			const timer = setInterval(() => {
+				current += increment;
+				if (current >= target) {
+					counter.textContent = target.toLocaleString();
+					clearInterval(timer);
+				} else {
+					counter.textContent = Math.floor(current).toLocaleString();
+				}
+			}, 16);
+		}, index * 100); // Stagger each counter by 100ms
 	});
 }
 
-// Skill Progress Bars Animation
+// Enhanced Skill Progress Bars Animation
 function animateSkillBars() {
-	const skillBars = document.querySelectorAll('.skill-fill');
+	const skillFills = document.querySelectorAll('.skill-fill');
 	
-	skillBars.forEach(bar => {
-		const width = bar.getAttribute('data-width');
-		bar.style.width = width + '%';
+	skillFills.forEach((bar, index) => {
+		// Set initial width to 0
+		bar.style.width = '0%';
+		
+		// Trigger animation with stagger
+		setTimeout(() => {
+			const width = bar.getAttribute('data-width');
+			bar.style.transition = 'width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+			bar.style.width = width + '%';
+		}, index * 100);
 	});
 }
 
-// Intersection Observer for Animations
+// Enhanced Initialize Animations
 function initializeAnimations() {
 	const observerOptions = {
-		threshold: 0.1,
-		rootMargin: '0px 0px -50px 0px'
+		threshold: 0.15,
+		rootMargin: '0px 0px -100px 0px'
 	};
 	
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
+				// Animate stats
 				if (entry.target.classList.contains('stats-section')) {
 					animateCounters();
+					observer.unobserve(entry.target);
 				}
+				// Animate skill bars
 				if (entry.target.classList.contains('about-me')) {
-					setTimeout(animateSkillBars, 500);
+					setTimeout(() => animateSkillBars(), 200);
+					observer.unobserve(entry.target);
+				}
+				// Animate sections on scroll
+				if (entry.target.classList.contains('s1') || entry.target.classList.contains('s2')) {
+					entry.target.style.opacity = '1';
+					entry.target.style.transform = 'translateY(0)';
 				}
 			}
 		});
 	}, observerOptions);
 	
-	// Observe sections
+	// Observe sections for stats and skills
 	document.querySelectorAll('.stats-section, .about-me').forEach(section => {
+		observer.observe(section);
+	});
+	
+	// Observe all sections for fade-in effect
+	document.querySelectorAll('.s1, .s2').forEach(section => {
+		section.style.opacity = '0.7';
+		section.style.transform = 'translateY(20px)';
+		section.style.transition = 'all 0.6s ease-out';
 		observer.observe(section);
 	});
 }
@@ -761,111 +865,6 @@ function setupNewsletterPopup() {
 			}
 		});
 	}, 15000);
-}
-
-// 6. ACHIEVEMENT BADGES
-function setupAchievementBadges() {
-	const achievements = {
-		firstVisit: { label: '🎬 First Visit', unlocked: false },
-		scrolled: { label: '📜 Explorer', unlocked: false },
-		visitedProjects: { label: '💼 Project Hunter', unlocked: false },
-		contactForm: { label: '💌 Connector', unlocked: false },
-		darkMode: { label: '🌙 Night Owl', unlocked: false }
-	};
-	
-	// Check if first visit
-	if (!localStorage.getItem('visited')) {
-		localStorage.setItem('visited', 'true');
-		unlockAchievement('firstVisit', achievements, 'Welcome! You unlocked your first badge!');
-	}
-	
-	// Track scrolling
-	let scrolled = false;
-	window.addEventListener('scroll', () => {
-		if (!scrolled && window.scrollY > 500) {
-			scrolled = true;
-			unlockAchievement('scrolled', achievements, 'Great explorer! You scrolled through my portfolio!');
-		}
-	});
-	
-	// Track project visits
-	document.querySelectorAll('.project-card').forEach(card => {
-		card.addEventListener('click', () => {
-			unlockAchievement('visitedProjects', achievements, 'Project enthusiast! You explored my work!');
-		});
-	});
-	
-	// Track form submission
-	const form = document.getElementById('contact-form');
-	if (form) {
-		form.addEventListener('submit', () => {
-			unlockAchievement('contactForm', achievements, 'Connected! Thanks for reaching out!');
-		});
-	}
-	
-	// Track dark mode
-	document.querySelectorAll('.theme-dot').forEach(dot => {
-		if (dot.id === 'blue-mode' || dot.id === 'green-mode' || dot.id === 'purple-mode') {
-			dot.addEventListener('click', () => {
-				unlockAchievement('darkMode', achievements, 'Night Owl! You switched to dark mode!');
-			});
-		}
-	});
-	
-	// Display badges
-	displayAchievements(achievements);
-}
-
-function unlockAchievement(achievement, achievements, message) {
-	if (!localStorage.getItem(`achievement_${achievement}`)) {
-		localStorage.setItem(`achievement_${achievement}`, 'true');
-		showNotification(message, 'achievement');
-	}
-}
-
-function displayAchievements(achievements) {
-	const badgeContainer = document.querySelector('.achievement-badges');
-	if (!badgeContainer) {
-		const container = document.createElement('div');
-		container.className = 'achievement-badges';
-		container.style.cssText = `
-			position: fixed;
-			top: 100px;
-			right: 20px;
-			z-index: 999;
-			max-width: 200px;
-		`;
-		document.body.appendChild(container);
-	}
-	
-	// Display unlocked achievements
-	const unlockedAchievements = [];
-	if (localStorage.getItem('achievement_firstVisit')) unlockedAchievements.push('🎬 First Visit');
-	if (localStorage.getItem('achievement_scrolled')) unlockedAchievements.push('📜 Explorer');
-	if (localStorage.getItem('achievement_visitedProjects')) unlockedAchievements.push('💼 Project Hunter');
-	if (localStorage.getItem('achievement_contactForm')) unlockedAchievements.push('💌 Connector');
-	if (localStorage.getItem('achievement_darkMode')) unlockedAchievements.push('🌙 Night Owl');
-	
-	if (unlockedAchievements.length > 0) {
-		const badgeContainer = document.querySelector('.achievement-badges');
-		badgeContainer.innerHTML = '<strong style="color: var(--mainText); font-size: 0.9rem;">🏆 Achievements</strong><br>';
-		unlockedAchievements.forEach((badge, index) => {
-			const badgeEl = document.createElement('div');
-			badgeEl.style.cssText = `
-				padding: 6px 10px;
-				background: #FFD700;
-				color: black;
-				border-radius: 20px;
-				font-size: 0.8rem;
-				margin-top: 6px;
-				text-align: center;
-				font-weight: bold;
-				animation: slideInLeft 0.5s ease-out ${index * 0.1}s backwards;
-			`;
-			badgeEl.textContent = badge;
-			badgeContainer.appendChild(badgeEl);
-		});
-	}
 }
 
 // 9. SUPPORT/HELP WIDGET
