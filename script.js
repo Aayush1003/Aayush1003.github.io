@@ -364,6 +364,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Extra cool features
 	initializeExtraFeatures();
 	
+	// New UX enhancements
+	setupParallaxHero();
+	setupCardTilt();
+	setupBackToTop();
+	
 	// Handle loading screen fade out
 	window.addEventListener('load', () => {
 		setTimeout(() => {
@@ -773,6 +778,72 @@ function scrollToContact() {
 	document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
 }
 
+// New: Parallax hero effect for subtle depth
+function setupParallaxHero() {
+	const hero = document.querySelector('.s1 .main-container');
+	if (!hero) return;
+	const profile = document.getElementById('profile_pic');
+	const preview = document.getElementById('preview');
+	hero.style.perspective = '1000px';
+
+	hero.addEventListener('mousemove', (e) => {
+		const rect = hero.getBoundingClientRect();
+		const x = (e.clientX - rect.left) / rect.width - 0.5;
+		const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+		if (profile) profile.style.transform = `translate(${x * 10}px, ${y * 6}px) rotate(${x * 6}deg)`;
+		if (preview) preview.style.transform = `translate(${x * -10}px, ${y * -6}px) rotate(${x * -3}deg)`;
+	});
+
+	hero.addEventListener('mouseleave', () => {
+		if (profile) profile.style.transform = '';
+		if (preview) preview.style.transform = '';
+	});
+}
+
+// Tilt effect for project cards
+function setupCardTilt() {
+	document.querySelectorAll('.project-card').forEach(card => {
+		const post = card.querySelector('.post');
+		card.style.perspective = '1000px';
+		card.addEventListener('mousemove', (e) => {
+			const rect = card.getBoundingClientRect();
+			const x = (e.clientX - rect.left) / rect.width - 0.5;
+			const y = (e.clientY - rect.top) / rect.height - 0.5;
+			if (post) post.style.transform = `rotateX(${ -y * 6 }deg) rotateY(${ x * 8 }deg) translateZ(6px)`;
+		});
+		card.addEventListener('mouseleave', () => {
+			if (post) post.style.transform = '';
+		});
+	});
+}
+
+// Back-to-top button
+function setupBackToTop() {
+	let btn = document.querySelector('.back-to-top');
+	if (!btn) {
+		btn = document.createElement('button');
+		btn.className = 'back-to-top';
+		btn.setAttribute('aria-label', 'Back to top');
+		btn.innerHTML = '↑';
+		document.body.appendChild(btn);
+	}
+
+	window.addEventListener('scroll', () => {
+		if (window.pageYOffset > 400) {
+			btn.classList.add('show');
+			btn.style.display = 'flex';
+		} else {
+			btn.classList.remove('show');
+			btn.style.display = 'none';
+		}
+	});
+
+	btn.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+}
+
 // ==================== ENGAGEMENT FEATURES ====================
 
 // 1. TESTIMONIALS CAROUSEL
@@ -1167,6 +1238,9 @@ function setupKeyboardShortcuts() {
 		} else if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
 			e.preventDefault();
 			showCommandPalette();
+		} else if (e.key === 'r' && !e.ctrlKey && !e.metaKey) {
+			e.preventDefault();
+			openResumeModal();
 		} else if (e.key === 'Escape') {
 			// Hide open modals
 			const modals = document.querySelectorAll('.modal.open');
