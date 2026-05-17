@@ -1,736 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Aayush Gupta - Full Stack Developer</title>
+	<title>Aayush Gupta — Full Stack Developer & System Engineer</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Portfolio of Aayush Gupta, a passionate Full Stack Developer specializing in Angular, React, Spring Boot, and more.">
-	<meta name="keywords" content="Aayush Gupta, Full Stack Developer, Angular, React, Spring Boot, Python, Web Development">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Portfolio of Aayush Gupta — Full Stack Developer, System Engineer at TCS, specializing in Angular, Spring Boot, Cloud, and AI/ML.">
+	<meta name="keywords" content="Aayush Gupta, Full Stack Developer, Angular, React, Spring Boot, Python, TCS">
 	<meta name="author" content="Aayush Gupta">
-	<meta property="og:title" content="Aayush Gupta - Full Stack Developer">
-	<meta property="og:description" content="Portfolio showcasing projects in web development, machine learning, and more.">
+	<meta property="og:title" content="Aayush Gupta — Full Stack Developer">
+	<meta property="og:description" content="Portfolio showcasing projects in web development, cybersecurity, AI/ML, and more.">
 	<meta property="og:image" content="images/aayush.jpg">
 	<meta property="og:url" content="https://aayush1003.github.io">
-	<meta name="twitter:card" content="summary_large_image">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" type="text/css" href="default.css">
-	<link id="theme-style" rel="stylesheet" type="text/css" href="">
-
-	<!-- Particles.js -->
-	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<link rel="stylesheet" href="default.css">
 </head>
 <body>
-	<!-- Loading Screen -->
-	<div id="loading-screen">
-		<div class="loading-content">
-			<div class="loading-spinner"></div>
-			<h2>Welcome to My Portfolio</h2>
-			<p>Loading amazing experiences and projects...</p>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+	<div class="loading-content">
+		<div class="loading-spinner"></div>
+		<h2>Aayush Gupta</h2>
+		<p>Loading portfolio...</p>
+	</div>
+</div>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress"><div class="scroll-progress-bar"></div></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+	<div class="nav-container">
+		<a href="#" class="nav-logo">AG.</a>
+		<ul class="nav-links" id="nav-links">
+			<li><a href="#about">About</a></li>
+			<li><a href="#skills">Skills</a></li>
+			<li><a href="#experience">Experience</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="#" id="open-resume-btn" class="nav-resume">Resume</a></li>
+		</ul>
+		<button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+			<span></span><span></span><span></span>
+		</button>
+	</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+	<div class="hero-bg">
+		<div class="orb orb-1"></div>
+		<div class="orb orb-2"></div>
+		<div class="orb orb-3"></div>
+	</div>
+	<div class="hero-container">
+		<div class="hero-content">
+			<div class="hero-badge"><span class="dot"></span> Available for opportunities</div>
+			<h1>Hi, I'm <span class="gradient-text">Aayush Gupta</span></h1>
+			<p class="hero-subtitle">System Engineer at TCS · Full Stack Developer · Cloud Enthusiast</p>
+			<div class="hero-typing" id="typing"></div>
+			<div class="hero-buttons">
+				<a href="#projects" class="btn btn-primary">View Projects →</a>
+				<a href="#contact" class="btn btn-outline">Get in Touch</a>
+			</div>
+		</div>
+		<div class="hero-visual">
+			<div class="hero-image-wrapper">
+				<div class="hero-image-ring"></div>
+				<img src="images/aayush.jpg" alt="Aayush Gupta" id="profile_pic">
+			</div>
 		</div>
 	</div>
+</section>
 
-	<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content">
 
-	<!-- Scroll Progress Bar -->
-	<div class="scroll-progress">
-		<div class="scroll-progress-bar"></div>
-	</div>
-
-	<section class="s1">
-		<div class="main-container">
-			<div class="greeting-wrapper">
-				<h1>Hello, I'm Aayush Gupta</h1>
-				<p class="subtitle">Full Stack Developer & System Engineer at TCS</p>
-				<div class="professional-summary">
-					<p>Passionate about creating innovative solutions through code. Specialized in Angular, Spring Boot, and cloud technologies with 5+ years of professional experience in building scalable web applications.</p>
-				</div>
-				<div id="typing" class="typing-effect"></div>
-			</div>
-
-
-			<div class="intro-wrapper">
-				<nav class="nav-wrapper">
-
-					<!-- Link around dots-wrapper added after tutorial video -->
-					<a href="index.html">
-						<div class="dots-wrapper">
-							<div id="dot-1" class="browser-dot"></div>
-							<div id="dot-2" class="browser-dot"></div>
-							<div id="dot-3" class="browser-dot"></div>
-						</div>
-					</a>
-					
-
-					<ul id="navigation">
-						<li><a href="#" onclick="openResumeModal(); return false;" class="nav-resume-btn">📄 Download Resume</a></li>
-						<li><a href="#contact">Contact</a></li>
-
-					</ul>
-				</nav>
-
-				<div class="left-column">
-					<img id="profile_pic" src="images/aayush.jpg" role="img" alt="Profile picture of Aayush Gupta">
-					<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
-
-					<div id="theme-options-wrapper" role="group" aria-label="Theme selection">
-						<button data-mode="light" id="light-mode" class="theme-dot" aria-label="Light theme" title="Light Theme"></button>
-						<button data-mode="blue" id="blue-mode" class="theme-dot" aria-label="Blue dark theme" title="Blue Dark Theme"></button>
-						<button data-mode="green" id="green-mode" class="theme-dot" aria-label="Green dark theme" title="Green Dark Theme"></button>
-						<button data-mode="purple" id="purple-mode" class="theme-dot" aria-label="Purple dark theme" title="Purple Dark Theme"></button>
-					</div>
-
-					<p id="settings-note">*Theme settings will be saved for<br>your next visit</p>
-				</div>
-
-				<div class="right-column">
-
-					<div id="preview-shadow">
-						<div id="preview">
-							<div id="corner-tl" class="corner"></div>
-							<div id="corner-tr" class="corner"></div>
-							<h3>What I Do</h3>
-							<p>Full Stack Developer & System Engineer at TCS. Building scalable web applications with Angular, Spring Boot, and cloud technologies. Expert in DevOps, AI/ML, and end-to-end solutions.</p>
-							<div id="corner-br" class="corner"></div>
-							<div id="corner-bl" class="corner"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- About -->
+<section class="section" id="about">
+	<div class="section-container">
+		<div class="section-header">
+			<p class="section-label">About Me</p>
+			<h2 class="section-title">Passionate about building scalable solutions</h2>
 		</div>
-	</section>
-
-	<main id="main-content">
-
-	<section class="s2">
-		<div class="main-container">
-
-			<div class="about-wrapper">
-				<div class="about-me">
-				<div class="about-header">
-					<h4>About Me</h4>
-					<div class="about-tagline">Passionate Full Stack Developer & System Engineer</div>
-				</div>
-
-				<div class="about-content">
-					<p><strong>Professional Summary:</strong> I am a dedicated System Engineer at Tata Consultancy Services (TCS) with a robust foundation in Information Technology from Medicaps University. My expertise spans full-stack development, cloud technologies, and DevOps practices.</p>
-
-					<div class="key-highlights">
-						<div class="highlight-item">
-							<span class="highlight-icon">🎯</span>
-							<span>Specialized in Angular, ReactJS, Spring Boot, and cloud platforms (AWS/Azure)</span>
-						</div>
-						<div class="highlight-item">
-							<span class="highlight-icon">🚀</span>
-							<span>Experienced in DevOps, containerization with Docker, and CI/CD pipelines</span>
-						</div>
-						<div class="highlight-item">
-							<span class="highlight-icon">📚</span>
-							<span>Continuous learner with strong foundation in Python, JavaScript, and data structures</span>
-						</div>
-						<div class="highlight-item">
-							<span class="highlight-icon">🌟</span>
-							<span>Active contributor to open-source projects and competitive programming community</span>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<h4>Core Competencies</h4>
-
-				<p><strong>Primary Focus:</strong> Full-Stack Development with Angular + Spring Boot architecture</p>
-
-				<div id="skills">
-					<div class="skill-category">
-						<h5>Frontend Technologies</h5>
-						<ul>
-							<li>Angular</li>
-							<li>ReactJS</li>
-							<li>TypeScript</li>
-							<li>JavaScript (ES6+)</li>
-							<li>HTML5/CSS3</li>
-						</ul>
-					</div>
-
-					<div class="skill-category">
-						<h5>Backend Technologies</h5>
-						<ul>
-							<li>Spring Boot</li>
-							<li>Node.js</li>
-							<li>Python</li>
-							<li>Java</li>
-							<li>REST APIs</li>
-						</ul>
-					</div>
-
-					<div class="skill-category">
-						<h5>Cloud & DevOps</h5>
-						<ul>
-							<li>AWS</li>
-							<li>Azure</li>
-							<li>Docker</li>
-							<li>Kubernetes</li>
-							<li>CI/CD</li>
-						</ul>
-					</div>
-				</div>
-
-				<hr>
-
-				<h4>Technical Proficiency</h4>
-				<div class="skills-progress">
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>Angular</span>
-							<span class="skill-percentage">90%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="90"></div>
-						</div>
-					</div>
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>Spring Boot</span>
-							<span class="skill-percentage">85%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="85"></div>
-						</div>
-					</div>
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>ReactJS</span>
-							<span class="skill-percentage">80%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="80"></div>
-						</div>
-					</div>
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>Python</span>
-							<span class="skill-percentage">85%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="85"></div>
-						</div>
-					</div>
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>AWS/Cloud</span>
-							<span class="skill-percentage">75%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="75"></div>
-						</div>
-					</div>
-					<div class="skill-item">
-						<div class="skill-name">
-							<span>DevOps</span>
-							<span class="skill-percentage">70%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-width="70"></div>
-						</div>
-					</div>
-				</div>
-
+		<div class="about-grid">
+			<div class="about-text reveal">
+				<p><strong>System Engineer at Tata Consultancy Services (TCS)</strong> with a B.Tech in Information Technology from Medicaps University, Indore.</p>
+				<p>I specialize in full-stack development with Angular + Spring Boot, cloud platforms (AWS/Azure), DevOps practices, and AI/ML exploration. I love solving complex problems and building products that make a difference.</p>
+				<p>When I'm not coding, I create educational content on my <a href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube channel</a> and solve problems on <a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a>.</p>
 			</div>
-
-				
-				<div class="social-links">
-					<img id="social_img" src="images/follow.png" alt="Social links">
-					<h3>Find me on LinkedIn & GitHub</h3>
-
-					<a target="_blank" href="https://www.linkedin.com/in/aayush-gupta-1013a3158/">LinkedIn: @Aayush Gupta</a>
-					<br>
-					<a target="_blank" href="https://github.com/Aayush1003">GitHub: @Aayush Gupta</a>
-				</div>
-			</div>
-
-		</div>
-	</section>
-
-	<section class="s2 stats-section">
-		<div class="main-container">
-			<h3 style="text-align: center; margin-bottom: 10px;">My Professional Journey</h3>
-			<p style="text-align: center; margin-bottom: 40px; font-style: italic; color: var(--secondaryText);">From learning to leading - A story of continuous growth and innovation</p>
-			<div class="stats-grid">
-				<div class="stat-item">
-					<div class="stat-icon">🚀</div>
+			<div class="about-stats reveal">
+				<div class="stat-card">
 					<div class="stat-number" data-target="50">0</div>
-					<div class="stat-label">Projects Completed</div>
-					<div class="stat-description">Full-stack applications & solutions</div>
+					<div class="stat-label">Projects Built</div>
 				</div>
-				<div class="stat-item">
-					<div class="stat-icon">📈</div>
+				<div class="stat-card">
 					<div class="stat-number" data-target="3">0</div>
 					<div class="stat-label">Years Experience</div>
-					<div class="stat-description">Professional development journey</div>
 				</div>
-				<div class="stat-item">
-					<div class="stat-icon">🛠️</div>
+				<div class="stat-card">
 					<div class="stat-number" data-target="15">0</div>
-					<div class="stat-label">Technologies Mastered</div>
-					<div class="stat-description">Always learning, always growing</div>
+					<div class="stat-label">Technologies</div>
 				</div>
-				<div class="stat-item">
-					<div class="stat-icon">💡</div>
+				<div class="stat-card">
 					<div class="stat-number" data-target="1000">0</div>
 					<div class="stat-label">LeetCode Problems</div>
-					<div class="stat-description">Problem-solving expertise</div>
-				</div>
-				<div class="stat-item">
-					<div class="stat-icon">🌟</div>
-					<div class="stat-number" data-target="25">0</div>
-					<div class="stat-label">Open Source Contributions</div>
-					<div class="stat-description">Giving back to the community</div>
-				</div>
-				<div class="stat-item">
-					<div class="stat-icon">⭐</div>
-					<div class="stat-number" data-target="500">0</div>
-					<div class="stat-label">GitHub Stars</div>
-					<div class="stat-description">Code that inspires others</div>
 				</div>
 			</div>
+		</div>
+	</div>
+</section>
 
-			<!-- Journey Timeline -->
-			<div class="journey-timeline">
-				<h4 style="text-align: center; margin: 60px 0 30px;">Career Milestones</h4>
-				<div class="timeline">
-					<div class="timeline-item">
-						<div class="timeline-marker"></div>
-						<div class="timeline-content">
-							<h5>2021 - Present</h5>
-							<h6>System Engineer at TCS</h6>
-							<p>Leading system engineering initiatives with DevOps practices, cloud infrastructure, and scalable software solutions.</p>
-						</div>
+<!-- Skills -->
+<section class="section" id="skills" style="background:var(--bg-secondary)">
+	<div class="section-container">
+		<div class="section-header">
+			<p class="section-label">Tech Stack</p>
+			<h2 class="section-title">Skills & Technologies</h2>
+		</div>
+		<div class="skills-grid">
+			<div class="skill-group reveal">
+				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(108,92,231,0.15)">🎨</span> Frontend</div>
+				<div class="skill-tags">
+					<span class="skill-tag">Angular</span><span class="skill-tag">React</span>
+					<span class="skill-tag">TypeScript</span><span class="skill-tag">JavaScript</span>
+					<span class="skill-tag">HTML5/CSS3</span><span class="skill-tag">RxJS</span>
+				</div>
+			</div>
+			<div class="skill-group reveal">
+				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(0,206,201,0.15)">⚙️</span> Backend</div>
+				<div class="skill-tags">
+					<span class="skill-tag">Spring Boot</span><span class="skill-tag">Node.js</span>
+					<span class="skill-tag">Python</span><span class="skill-tag">Java</span>
+					<span class="skill-tag">REST APIs</span><span class="skill-tag">Flask</span>
+				</div>
+			</div>
+			<div class="skill-group reveal">
+				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(253,121,168,0.15)">☁️</span> Cloud & DevOps</div>
+				<div class="skill-tags">
+					<span class="skill-tag">AWS</span><span class="skill-tag">Azure</span>
+					<span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+					<span class="skill-tag">CI/CD</span><span class="skill-tag">Terraform</span>
+				</div>
+			</div>
+			<div class="skill-group reveal">
+				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(85,239,196,0.15)">🤖</span> AI / ML & Tools</div>
+				<div class="skill-tags">
+					<span class="skill-tag">AI Agents</span><span class="skill-tag">LangChain</span>
+					<span class="skill-tag">Machine Learning</span><span class="skill-tag">Firebase</span>
+					<span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+	<div class="section-container">
+		<div class="section-header">
+			<p class="section-label">Journey</p>
+			<h2 class="section-title">Experience & Education</h2>
+		</div>
+		<div class="timeline">
+			<div class="timeline-item reveal">
+				<div class="timeline-dot"></div>
+				<div class="timeline-card">
+					<div class="timeline-date">2021 — Present</div>
+					<div class="timeline-role">System Engineer</div>
+					<div class="timeline-company">Tata Consultancy Services (TCS)</div>
+					<div class="timeline-desc">Architect cloud-native solutions on AWS/Azure. Design CI/CD pipelines, lead containerization with Docker/K8s, and mentor junior developers.</div>
+					<div class="timeline-techs">
+						<span class="timeline-tech">AWS</span><span class="timeline-tech">Azure</span>
+						<span class="timeline-tech">Docker</span><span class="timeline-tech">Kubernetes</span>
+						<span class="timeline-tech">Jenkins</span>
 					</div>
-					<div class="timeline-item">
-						<div class="timeline-marker"></div>
-						<div class="timeline-content">
-							<h5>2021 - Present</h5>
-							<h6>Full Stack Developer || Cloud Engineer</h6>
-							<p>Developed end-to-end web applications using Angular, React, Spring Boot, and modern cloud technologies.</p>
-						</div>
+				</div>
+			</div>
+			<div class="timeline-item reveal">
+				<div class="timeline-dot"></div>
+				<div class="timeline-card">
+					<div class="timeline-date">2021 — Present</div>
+					<div class="timeline-role">Full Stack Developer</div>
+					<div class="timeline-company">Freelance & Personal Projects</div>
+					<div class="timeline-desc">Building end-to-end web applications using Angular, React, Spring Boot, and Node.js. Creating AI-powered tools and cybersecurity applications.</div>
+					<div class="timeline-techs">
+						<span class="timeline-tech">Angular</span><span class="timeline-tech">React</span>
+						<span class="timeline-tech">Spring Boot</span><span class="timeline-tech">Python</span>
 					</div>
-					<div class="timeline-item">
-						<div class="timeline-marker"></div>
-						<div class="timeline-content">
-							<h5>2017 - 2021</h5>
-							<h6>Computer Science Student</h6>
-							<p>Graduated with excellence in Information Technology, building foundation in software engineering and competitive programming.</p>
-						</div>
+				</div>
+			</div>
+			<div class="timeline-item reveal">
+				<div class="timeline-dot"></div>
+				<div class="timeline-card">
+					<div class="timeline-date">2017 — 2021</div>
+					<div class="timeline-role">B.Tech — Information Technology</div>
+					<div class="timeline-company">Medicaps University, Indore</div>
+					<div class="timeline-desc">Graduated with distinction. Strong foundation in software engineering, data structures, algorithms, and competitive programming.</div>
+					<div class="timeline-techs">
+						<span class="timeline-tech">DSA</span><span class="timeline-tech">DBMS</span>
+						<span class="timeline-tech">OS</span><span class="timeline-tech">ML</span>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<section class="s1 experience">
-		<div class="main-container">
-			<div class="section-header">
-				<h3>Professional Experience</h3>
-				<p class="section-subtitle">Building scalable solutions and leading technical initiatives</p>
-			</div>
-
-			<div class="experience-container">
-				<div class="experience-item">
-					<div class="experience-header">
-						<div class="job-title-company">
-							<h4>System Engineer</h4>
-							<span class="company">Tata Consultancy Services (TCS)</span>
-						</div>
-						<span class="duration">Current</span>
-					</div>
-					<div class="experience-content">
-						<p class="job-summary">Leading system engineering initiatives with focus on DevOps practices, cloud infrastructure, and scalable software solutions.</p>
-						<ul class="responsibilities">
-							<li>Architect and implement cloud-native solutions using AWS and Azure platforms</li>
-							<li>Design and maintain CI/CD pipelines for automated deployment and testing</li>
-							<li>Lead containerization efforts using Docker and orchestration with Kubernetes</li>
-							<li>Collaborate with cross-functional teams to deliver high-quality software products</li>
-							<li>Mentor junior developers and conduct technical knowledge sharing sessions</li>
-						</ul>
-						<div class="technologies">
-							<strong>Technologies:</strong> AWS, Azure, Docker, Kubernetes, Jenkins, Terraform, System Design
-						</div>
-					</div>
-				</div>
-
-				<div class="experience-item">
-					<div class="experience-header">
-						<div class="job-title-company">
-							<h4>Full Stack Developer</h4>
-							<span class="company">Freelance & Personal Projects</span>
-						</div>
-						<span class="duration">Ongoing</span>
-					</div>
-					<div class="experience-content">
-						<p class="job-summary">Developing end-to-end web applications using modern frameworks and technologies with focus on user experience and performance.</p>
-						<ul class="responsibilities">
-							<li>Build responsive web applications using Angular and React frameworks</li>
-							<li>Design and implement RESTful APIs with Spring Boot and Node.js</li>
-							<li>Integrate third-party services and payment gateways</li>
-							<li>Optimize application performance and implement security best practices</li>
-							<li>Create interactive data visualizations using D3.js and modern charting libraries</li>
-						</ul>
-						<div class="technologies">
-							<strong>Technologies:</strong> Angular, ReactJS, Spring Boot, Node.js, Python, Firebase, MongoDB
-						</div>
-					</div>
-				</div>
-
-				<div class="experience-item">
-					<div class="experience-header">
-						<div class="job-title-company">
-							<h4>Bachelor of Technology in Information Technology</h4>
-							<span class="company">Medicaps University, Indore</span>
-						</div>
-						<span class="duration">Completed 2021</span>
-					</div>
-					<div class="experience-content">
-						<p class="job-summary">Comprehensive education in software engineering, data structures, algorithms, and emerging technologies with academic excellence.</p>
-						<ul class="responsibilities">
-							<li>Achieved academic excellence with distinction in core computer science subjects</li>
-							<li>Active participation in competitive programming contests and hackathons</li>
-							<li>Contributed to open-source projects and technical communities</li>
-							<li>Developed strong foundation in software engineering principles and best practices</li>
-							<li>Completed capstone project on machine learning applications in healthcare</li>
-						</ul>
-						<div class="technologies">
-							<strong>Key Focus:</strong> Software Engineering, Data Science, Machine Learning, Web Development, Database Systems
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- Projects -->
+<section class="section" id="projects" style="background:var(--bg-secondary)">
+	<div class="section-container">
+		<div class="section-header">
+			<p class="section-label">Portfolio</p>
+			<h2 class="section-title">Featured Projects</h2>
+			<p class="section-desc">Real projects built with modern technologies</p>
 		</div>
-	</section>
-
-	<section class="s2 achievements">
-		<div class="main-container">
-			<h3>Achievements & Certifications</h3>
-			<div class="achievements-grid">
-				<div class="achievement-item">
-					<h4>🏆 Competitive Programming</h4>
-					<p>Active problem solver on LeetCode and GeeksforGeeks, continuously improving algorithmic skills and data structure knowledge.</p>
-					<a href="https://leetcode.com/u/aayushgupta047" target="_blank">View LeetCode Profile</a>
-				</div>
-				<div class="achievement-item">
-					<h4>💻 Open Source Contributor</h4>
-					<p>Passionate about contributing to open-source projects, focusing on full-stack development and innovative solutions.</p>
-					<a href="https://github.com/Aayush1003" target="_blank">View GitHub</a>
-				</div>
-				<div class="achievement-item">
-					<h4>☁️ Cloud & DevOps Expert</h4>
-					<p>Certified in cloud technologies with hands-on experience in AWS, Azure, and Docker containerization.</p>
-				</div>
-				<div class="achievement-item">
-					<h4>🎓 Academic Excellence</h4>
-					<p>Graduated with distinction in Information Technology, specializing in software engineering and emerging technologies.</p>
-				</div>
-			</div>
+		<div class="projects-filter">
+			<button class="filter-btn active" data-filter="all">All</button>
+			<button class="filter-btn" data-filter="ai">AI / Security</button>
+			<button class="filter-btn" data-filter="web">Web Apps</button>
+			<button class="filter-btn" data-filter="tools">Tools</button>
 		</div>
-	</section>
+		<div class="projects-grid">
 
-	<section class="youtube-section">
-		<div class="main-container">
-			<h3>YouTube Channel</h3>
-			<p>I have a YouTube channel where I share educational content, tutorials, and courses on full-stack development, programming languages, and technology trends. Check it out to learn more!</p>
-			<a href="https://www.youtube.com/@AayushGupta04" target="_blank" class="youtube-link">Visit My YouTube Channel</a>
-		</div>
-	</section>
-
-	<section class="s2 testimonials-section">
-		<div class="main-container">
-			<h3 style="text-align: center;">What People Say</h3>
-			<div class="testimonials-grid">
-				<div class="testimonial-item">
-					<div class="testimonial-content">
-						<p>"Aayush delivered exceptional work on our full-stack project. His expertise in Angular and Spring Boot helped us achieve our goals ahead of schedule."</p>
+			<!-- Project 1: CyberShield -->
+			<div class="project-card reveal" data-category="ai">
+				<div class="project-gradient" style="background:linear-gradient(135deg,#0f3443,#34e89e)">🛡️</div>
+				<div class="project-body">
+					<div class="project-title">CyberShield AI Agent</div>
+					<div class="project-desc">Real-time cybersecurity monitor that detects hidden processes, stealth AI agents, and suspicious background apps invisible to Task Manager.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">Python</span><span class="project-tech-tag">Flask</span>
+						<span class="project-tech-tag">JavaScript</span><span class="project-tech-tag">psutil</span>
 					</div>
-					<div class="testimonial-author">
-						<div class="author-avatar">👨‍💼</div>
-						<div class="author-info">
-							<h5>Sarah Johnson</h5>
-							<span>Project Manager, TechCorp</span>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-item">
-					<div class="testimonial-content">
-						<p>"Outstanding problem-solving skills and deep knowledge of cloud technologies. Aayush is a valuable asset to any development team."</p>
-					</div>
-					<div class="testimonial-author">
-						<div class="author-avatar">👩‍💻</div>
-						<div class="author-info">
-							<h5>Michael Chen</h5>
-							<span>Lead Developer, CloudTech</span>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-item">
-					<div class="testimonial-content">
-						<p>"His dedication to learning and sharing knowledge through YouTube tutorials is inspiring. Great technical skills combined with excellent communication."</p>
-					</div>
-					<div class="testimonial-author">
-						<div class="author-avatar">🎓</div>
-						<div class="author-info">
-							<h5>Dr. Priya Sharma</h5>
-							<span>Professor, Medicaps University</span>
-						</div>
+					<div class="project-links">
+						<a href="https://github.com/Aayush1003/cyber-shield-ai-agent" target="_blank" class="project-link">GitHub →</a>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
 
-	<section class="s2 github-stats-section">
-		<div class="main-container">
-			<h3 style="text-align: center;">GitHub Activity</h3>
-			<div id="github-stats" class="github-stats-container">
-				<div class="github-overview">
-					<div class="github-stat-card">
-						<div class="stat-icon">📊</div>
-						<div class="stat-info">
-							<div id="repo-count" class="stat-value">--</div>
-							<div class="stat-label">Repositories</div>
-						</div>
+			<!-- Project 2: Vedic AI Kundali -->
+			<div class="project-card reveal" data-category="ai">
+				<div class="project-gradient" style="background:linear-gradient(135deg,#2d1b69,#e040fb)">🔮</div>
+				<div class="project-body">
+					<div class="project-title">Vedic AI Kundali</div>
+					<div class="project-desc">AI-powered Vedic astrology platform with Kundali generation, 36 Gun matching, Dasha predictions, and personalized AI chat for life guidance.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">TypeScript</span>
+						<span class="project-tech-tag">AI/ML</span><span class="project-tech-tag">Node.js</span>
 					</div>
-					<div class="github-stat-card">
-						<div class="stat-icon">⭐</div>
-						<div class="stat-info">
-							<div id="stars-count" class="stat-value">--</div>
-							<div class="stat-label">Total Stars</div>
-						</div>
-					</div>
-					<div class="github-stat-card">
-						<div class="stat-icon">🍴</div>
-						<div class="stat-info">
-							<div id="forks-count" class="stat-value">--</div>
-							<div class="stat-label">Total Forks</div>
-						</div>
-					</div>
-					<div class="github-stat-card">
-						<div class="stat-icon">👥</div>
-						<div class="stat-info">
-							<div id="followers-count" class="stat-value">--</div>
-							<div class="stat-label">Followers</div>
-						</div>
+					<div class="project-links">
+						<a href="https://github.com/Aayush1003/vedic-ai-kundali" target="_blank" class="project-link">GitHub →</a>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
 
-	<section class="s1">
-		<div class="main-container">
-			<h3 style="text-align: center;">Some of my past projects</h3>
-
-			<div class="project-filters">
-				<button class="filter-btn active" data-filter="all">All</button>
-				<button class="filter-btn" data-filter="web">Web Apps</button>
-				<button class="filter-btn" data-filter="desktop">Desktop</button>
-				<button class="filter-btn" data-filter="ml">ML/AI</button>
+			<!-- Project 3: AI Agent Arena -->
+			<div class="project-card reveal" data-category="ai">
+				<div class="project-gradient" style="background:linear-gradient(135deg,#1a1a2e,#e94560)">🤖</div>
+				<div class="project-body">
+					<div class="project-title">AI Agent Arena</div>
+					<div class="project-desc">Simulation game where multiple AI agents compete and cooperate to complete missions using tools, memory, reasoning, and external APIs.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">HTML/CSS</span><span class="project-tech-tag">JavaScript</span>
+						<span class="project-tech-tag">AI Agents</span>
+					</div>
+					<div class="project-links">
+						<a href="https://github.com/Aayush1003/ai-agent-arena" target="_blank" class="project-link">GitHub →</a>
+					</div>
+				</div>
 			</div>
 
-			<div class="post-wrapper">
-
-				<div class="project-card" data-category="web">
-					<div class="post">
-						<img class="thumbnail" src="images/dash.jpg" alt="Laboratory Management System">
-						<div class="post-preview">
-							<h6 class="post-title">Laboratory Management System</h6>
-							<p class="post-intro">Designed, built & maintained a lab management system for FOI Laboratories</p>
-							<div class="project-tech">Angular • Spring Boot • MySQL</div>
-							<a href="post.html">Read More</a>
-						</div>
+			<!-- Project 4: BlackRock Hackathon -->
+			<div class="project-card reveal" data-category="web">
+				<div class="project-gradient" style="background:linear-gradient(135deg,#0c0c1d,#ffd700)">🏦</div>
+				<div class="project-body">
+					<div class="project-title">BlackRock Retirement Challenge</div>
+					<div class="project-desc">Production-grade solution for BlackRock Hackathon — O(n log n) retirement fund optimization with BigDecimal precision, fully Dockerized.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">Java</span><span class="project-tech-tag">Spring Boot</span>
+						<span class="project-tech-tag">Docker</span>
+					</div>
+					<div class="project-links">
+						<a href="https://github.com/Aayush1003/blk-hacking-ind-aayush-gupta" target="_blank" class="project-link">GitHub →</a>
 					</div>
 				</div>
-
-				<div class="project-card" data-category="web">
-					<div class="post">
-						<img class="thumbnail" src="images/ecom.jpg" alt="Online Store">
-						<div class="post-preview">
-							<h6 class="post-title">Online Store</h6>
-							<p class="post-intro">Online store with PayPal payments integration and guest user shopping</p>
-							<div class="project-tech">React • Node.js • MongoDB</div>
-							<a href="post.html">Read More</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="project-card" data-category="web">
-					<div class="post">
-						<img class="thumbnail" src="images/customer-dash.jpg" alt="Customer Dashboard">
-						<div class="post-preview">
-							<h6 class="post-title">Customer Dashboard</h6>
-							<p class="post-intro">Interactive customer dashboard for data visualization and management</p>
-							<div class="project-tech">Angular • D3.js • Firebase</div>
-							<a href="post.html">Read More</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="project-card" data-category="desktop">
-					<div class="post">
-						<img class="thumbnail" src="images/desktop wallpaper.jpg" alt="Desktop Wallpaper App">
-						<div class="post-preview">
-							<h6 class="post-title">Desktop Wallpaper App</h6>
-							<p class="post-intro">Dynamic wallpaper application with customizable themes and scheduling</p>
-							<div class="project-tech">Python • Tkinter • SQLite</div>
-							<a href="post.html">Read More</a>
-						</div>
-					</div>
-				</div>
-
 			</div>
+
+			<!-- Project 5: Lab Management -->
+			<div class="project-card reveal" data-category="web">
+				<div class="project-thumb"><img src="images/dash.jpg" alt="Lab Management System"></div>
+				<div class="project-body">
+					<div class="project-title">Laboratory Management System</div>
+					<div class="project-desc">End-to-end lab management system for FOI Laboratories with sample tracking, report generation, and dashboard analytics.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">Spring Boot</span>
+						<span class="project-tech-tag">MySQL</span>
+					</div>
+					<div class="project-links">
+						<a href="post.html" class="project-link">Details →</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Project 6: Tic-Tac-Toe -->
+			<div class="project-card reveal" data-category="tools">
+				<div class="project-gradient" style="background:linear-gradient(135deg,#0f0c29,#24243e,#302b63)">🎮</div>
+				<div class="project-body">
+					<div class="project-title">Angular Tic-Tac-Toe</div>
+					<div class="project-desc">Interactive tic-tac-toe game built with Angular, featuring PWA support and hosted on Firebase with real-time database integration.</div>
+					<div class="project-techs">
+						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">TypeScript</span>
+						<span class="project-tech-tag">Firebase</span>
+					</div>
+					<div class="project-links">
+						<a href="https://github.com/Aayush1003/angular-tic-tac-toe" target="_blank" class="project-link">GitHub →</a>
+					</div>
+				</div>
+			</div>
+
 		</div>
-	</section>
+	</div>
+</section>
 
-	<section class="s2">
-		<div class="main-container">
-			<div id="contact"></div>
-			<h3 style="text-align: center;">Get In Touch</h3>
-
-			<form id="contact-form" novalidate>
+<!-- Contact -->
+<section class="section" id="contact">
+	<div class="section-container">
+		<div class="section-header">
+			<p class="section-label">Contact</p>
+			<h2 class="section-title">Let's Work Together</h2>
+		</div>
+		<div class="contact-grid">
+			<div class="contact-info reveal">
+				<h3>Get in touch</h3>
+				<p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+				<div class="contact-links">
+					<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank" class="contact-link-item">
+						<div class="contact-icon">💼</div>
+						<div><div class="contact-link-text">LinkedIn</div><div class="contact-link-sub">@Aayush Gupta</div></div>
+					</a>
+					<a href="https://github.com/Aayush1003" target="_blank" class="contact-link-item">
+						<div class="contact-icon">🐙</div>
+						<div><div class="contact-link-text">GitHub</div><div class="contact-link-sub">@Aayush1003</div></div>
+					</a>
+					<a href="https://www.youtube.com/@AayushGupta04" target="_blank" class="contact-link-item">
+						<div class="contact-icon">🎬</div>
+						<div><div class="contact-link-text">YouTube</div><div class="contact-link-sub">@AayushGupta04</div></div>
+					</a>
+					<a href="https://leetcode.com/u/aayushgupta047" target="_blank" class="contact-link-item">
+						<div class="contact-icon">🧩</div>
+						<div><div class="contact-link-text">LeetCode</div><div class="contact-link-sub">1000+ problems solved</div></div>
+					</a>
+				</div>
+			</div>
+			<form id="contact-form" class="contact-form reveal" novalidate>
 				<div class="form-group">
 					<label for="name">Name</label>
-					<input class="input-field" type="text" id="name" name="name" required aria-required="true">
+					<input class="form-input" type="text" id="name" name="name" required>
 					<span class="error-message" id="name-error"></span>
 				</div>
-
-				<div class="form-group">
-					<label for="subject">Subject</label>
-					<input class="input-field" type="text" id="subject" name="subject" required aria-required="true">
-					<span class="error-message" id="subject-error"></span>
-				</div>
-
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input class="input-field" type="email" id="email" name="email" required aria-required="true">
+					<input class="form-input" type="email" id="email" name="email" required>
 					<span class="error-message" id="email-error"></span>
 				</div>
-
+				<div class="form-group">
+					<label for="subject">Subject</label>
+					<input class="form-input" type="text" id="subject" name="subject" required>
+					<span class="error-message" id="subject-error"></span>
+				</div>
 				<div class="form-group">
 					<label for="message">Message</label>
-					<textarea class="input-field" id="message" name="message" required aria-required="true" rows="5"></textarea>
+					<textarea class="form-input" id="message" name="message" required rows="5"></textarea>
 					<span class="error-message" id="message-error"></span>
 				</div>
-
-				<button id="submit-btn" type="submit" class="submit-button">Send Message</button>
+				<button type="submit" class="btn btn-primary" id="submit-btn">Send Message →</button>
 				<div id="form-message" role="alert" aria-live="polite"></div>
 			</form>
 		</div>
-	</section>
+	</div>
+</section>
 
-	</main>
+</main>
 
-	<!-- Project Detail Modal -->
-	<div id="project-modal" class="modal" aria-hidden="true">
-		<div class="modal-content" role="dialog" aria-modal="true">
-			<button class="modal-close" aria-label="Close project details">&times;</button>
-			<div class="modal-body">
-				<img class="modal-img" src="" alt="Project image">
-				<div class="modal-info">
-					<h4 class="modal-title"></h4>
-					<p class="modal-intro"></p>
-					<div class="modal-tech"></div>
-				</div>
-			</div>
+<!-- Resume Modal -->
+<div id="resume-modal" class="modal" aria-hidden="true">
+	<div class="modal-content">
+		<button class="modal-close" aria-label="Close">×</button>
+		<h3>Resume</h3>
+		<iframe src="resumes.pdf" width="100%" height="500px" style="border:none;border-radius:8px;margin:16px 0"></iframe>
+		<a href="resumes.pdf" download class="btn btn-primary">Download PDF</a>
+	</div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+	<div class="section-container">
+		<p>© 2026 Aayush Gupta. Crafted with passion.</p>
+		<div class="footer-links">
+			<a href="https://github.com/Aayush1003" target="_blank">GitHub</a>
+			<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank">LinkedIn</a>
+			<a href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube</a>
+			<a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a>
 		</div>
 	</div>
+</footer>
 
-	<!-- Resume Preview Modal -->
-	<div id="resume-modal" class="modal" aria-hidden="true">
-		<div class="modal-content resume-modal-content" role="dialog" aria-modal="true">
-			<button class="modal-close" aria-label="Close resume preview">&times;</button>
-			<div class="modal-body">
-				<h3>Resume Preview</h3>
-				<div class="resume-preview">
-					<iframe src="resumes.pdf" width="100%" height="600px" style="border: none;"></iframe>
-				</div>
-				<div class="resume-download-options">
-					<a href="resumes.pdf" download class="resume-download-btn">Download PDF</a>
-					<!-- Add more formats if available -->
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- FAB -->
+<div class="fab-container" id="fab-container">
+	<button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to Top" title="Back to Top">↑</button>
+</div>
 
-	<footer>
-		<div class="main-container">
-			<p>&copy; 2026 Aayush Gupta. All rights reserved.</p>
-			<div class="coding-profiles">
-				<a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a> |
-				<a href="https://www.geeksforgeeks.org/profile/aayushgupta8" target="_blank">GeeksforGeeks</a>
-			</div>
-		</div>
-	</footer>
-
-	<!-- Floating Action Button -->
-	<div class="fab-container">
-		<button class="fab" onclick="scrollToContact()" aria-label="Scroll to contact section" title="Contact Me">
-			<span class="fab-icon">💬</span>
-		</button>
-		<div class="fab-label">Contact Me</div>
-	</div>
-
-	<!-- Particles Background -->
-	<div id="particles-js"></div>
-
-	<!-- EmailJS script -->
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
-	<script type="text/javascript">
-		emailjs.init("Y-uUF6NpMZhRqBY4E");
-	</script>
-
-	<!-- Typing effect -->
-	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const typingElement = document.getElementById('typing');
-  const texts = [
-    "System Engineer at TCS | Full Stack Developer",
-    "Angular & Spring Boot Expert | Cloud Enthusiast",
-    "DevOps Practitioner | AI/ML Explorer",
-    "Open Source Contributor | Problem Solver"
-  ];
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function typeWriter() {
-    const currentText = texts[textIndex];
-    
-    if (!isDeleting) {
-      typingElement.innerHTML = currentText.substring(0, charIndex + 1);
-      charIndex++;
-      if (charIndex === currentText.length) {
-        isDeleting = true;
-        setTimeout(typeWriter, 2000); // Pause at end
-        return;
-      }
-    } else {
-      typingElement.innerHTML = currentText.substring(0, charIndex);
-      charIndex--;
-      if (charIndex < 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        setTimeout(typeWriter, 500); // Pause before next text
-        return;
-      }
-    }
-    
-    setTimeout(typeWriter, isDeleting ? 50 : 100);
-  }
-
-  typeWriter();
-});
-</script>
-
-<script type="text/javascript" src="script.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js" defer></script>
+<script src="script.js" defer></script>
+</body>
 </html>
