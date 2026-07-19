@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "Building scalable web applications with Angular & Spring Boot",
       "System Engineer at TCS · Cloud & DevOps Enthusiast",
       "AI/ML Explorer · Open Source Contributor",
-      "1000+ LeetCode problems solved · Problem Solver"
+      "Problem solver with strong engineering fundamentals"
     ];
     let ti = 0, ci = 0, deleting = false;
     function typeWriter() {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Contact form
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -126,38 +126,50 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!valid) return;
 
       const btn = document.getElementById('submit-btn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+      if (btn) {
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+      }
 
       const fullMessage = `Project Type: ${projectType}\nEstimated Budget: ${budget}\n\nMessage:\n${message}`;
+      const mailtoSubject = encodeURIComponent(`${subject} (${projectType} - Budget: ${budget})`);
+      const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Type: ${projectType}\nEstimated Budget: ${budget}\n\nMessage:\n${message}`);
+      const mailtoLink = `mailto:aayushgupta047@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
-      if (typeof emailjs !== 'undefined') {
-        emailjs.init("Y-uUF6NpMZhRqBY4E");
-        emailjs.send('service_rqo828j', 'template_w87qlwp', {
-          to_email: 'aayushgupta047@gmail.com',
-          from_name: name,
-          from_email: email,
-          subject: `${subject} (${projectType} - Budget: ${budget})`,
-          message: fullMessage,
-          project_type: projectType,
-          budget: budget
-        }).then(() => {
-          msgEl.textContent = '✅ Message sent successfully!';
-          msgEl.style.color = 'var(--accent-2)';
+      try {
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init('Y-uUF6NpMZhRqBY4E');
+          await emailjs.send('service_rqo828j', 'template_w87qlwp', {
+            to_email: 'aayushgupta047@gmail.com',
+            from_name: name,
+            from_email: email,
+            subject: `${subject} (${projectType} - Budget: ${budget})`,
+            message: fullMessage,
+            project_type: projectType,
+            budget: budget
+          });
+
+          if (msgEl) {
+            msgEl.textContent = '✅ Message sent successfully!';
+            msgEl.style.color = 'var(--accent-2)';
+          }
           form.reset();
-        }).catch(() => {
-          msgEl.innerHTML = '📧 Email service unavailable. Reach me at <a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/">LinkedIn</a>';
+        } else {
+          throw new Error('EmailJS not available');
+        }
+      } catch (error) {
+        console.error('Contact form submission failed:', error);
+        if (msgEl) {
+          msgEl.innerHTML = '📧 The email service is unavailable right now. Your email app should open with your message so you can send it directly.';
           msgEl.style.color = 'var(--accent-3)';
-        }).finally(() => {
+        }
+        window.location.href = mailtoLink;
+        form.reset();
+      } finally {
+        if (btn) {
           btn.textContent = 'Send Message →';
           btn.disabled = false;
-        });
-      } else {
-        msgEl.textContent = '✅ Thanks! Message recorded.';
-        msgEl.style.color = 'var(--accent-2)';
-        btn.textContent = 'Send Message →';
-        btn.disabled = false;
-        form.reset();
+        }
       }
     });
   }
