@@ -109,6 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value.trim();
       const message = document.getElementById('message').value.trim();
+      const projectTypeEl = document.getElementById('project-type');
+      const budgetEl = document.getElementById('budget');
+      const projectType = projectTypeEl ? projectTypeEl.options[projectTypeEl.selectedIndex].text : '';
+      const budget = budgetEl ? budgetEl.options[budgetEl.selectedIndex].text : '';
       const msgEl = document.getElementById('form-message');
       let valid = true;
 
@@ -125,11 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
+      const fullMessage = `Project Type: ${projectType}\nEstimated Budget: ${budget}\n\nMessage:\n${message}`;
+
       if (typeof emailjs !== 'undefined') {
         emailjs.init("Y-uUF6NpMZhRqBY4E");
         emailjs.send('service_rqo828j', 'template_w87qlwp', {
           to_email: 'aayushgupta047@gmail.com',
-          from_name: name, from_email: email, subject: subject, message: message
+          from_name: name,
+          from_email: email,
+          subject: `${subject} (${projectType} - Budget: ${budget})`,
+          message: fullMessage,
+          project_type: projectType,
+          budget: budget
         }).then(() => {
           msgEl.textContent = '✅ Message sent successfully!';
           msgEl.style.color = 'var(--accent-2)';
@@ -185,4 +196,26 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.setProperty('--mouse-y', `${y}px`);
     });
   });
+
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update theme icon
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    if (themeIcon) {
+      themeIcon.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (themeIcon) {
+        themeIcon.textContent = theme === 'light' ? '☀️' : '🌙';
+      }
+    });
+  }
 });

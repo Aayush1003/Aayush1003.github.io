@@ -1,418 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Aayush Gupta — Full Stack Developer & System Engineer</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Portfolio of Aayush Gupta — Full Stack Developer, System Engineer at TCS, specializing in Angular, Spring Boot, Cloud, and AI/ML.">
+	<meta name="description"
+		content="Portfolio of Aayush Gupta — Full Stack Developer, System Engineer at TCS, specializing in Angular, Spring Boot, Cloud, and AI/ML.">
 	<meta name="keywords" content="Aayush Gupta, Full Stack Developer, Angular, React, Spring Boot, Python, TCS">
 	<meta name="author" content="Aayush Gupta">
 	<meta property="og:title" content="Aayush Gupta — Full Stack Developer">
-	<meta property="og:description" content="Portfolio showcasing projects in web development, cybersecurity, AI/ML, and more.">
-	<meta property="og:image" content="images/aayush.jpg">
+	<meta property="og:description"
+		content="Portfolio showcasing projects in web development, cybersecurity, AI/ML, and more.">
+	<meta property="og:image" content="images/aayush.jpeg">
 	<meta property="og:url" content="https://aayush1003.github.io">
 	<link rel="stylesheet" href="default.css">
 </head>
+
 <body>
 
-<!-- Loading Screen -->
-<div id="loading-screen">
-	<div class="loading-content">
-		<div class="loading-spinner"></div>
-		<h2>Aayush Gupta</h2>
-		<p>Loading portfolio...</p>
-	</div>
-</div>
-
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<!-- Scroll Progress -->
-<div class="scroll-progress"><div class="scroll-progress-bar"></div></div>
-
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-	<div class="nav-container">
-		<a href="#" class="nav-logo">AG.</a>
-		<ul class="nav-links" id="nav-links">
-			<li><a href="#about">About</a></li>
-			<li><a href="#skills">Skills</a></li>
-			<li><a href="#experience">Experience</a></li>
-			<li><a href="#projects">Projects</a></li>
-			<li><a href="#contact">Contact</a></li>
-			<li><a href="#" id="open-resume-btn" class="nav-resume">Resume</a></li>
-		</ul>
-		<button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
-			<span></span><span></span><span></span>
-		</button>
-	</div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" id="hero">
-	<div class="hero-bg">
-		<div class="orb orb-1"></div>
-		<div class="orb orb-2"></div>
-		<div class="orb orb-3"></div>
-	</div>
-	<div class="hero-container">
-		<div class="hero-content">
-			<div class="hero-badge"><span class="dot"></span> Available for opportunities</div>
-			<h1>Hi, I'm <span class="gradient-text">Aayush Gupta</span></h1>
-			<p class="hero-subtitle">System Engineer at TCS · Full Stack Developer · Cloud Enthusiast</p>
-			<div class="hero-typing" id="typing"></div>
-			<div class="hero-buttons">
-				<a href="#projects" class="btn btn-primary">View Projects →</a>
-				<a href="#contact" class="btn btn-outline">Get in Touch</a>
-			</div>
-		</div>
-		<div class="hero-visual">
-			<div class="hero-image-wrapper">
-				<div class="hero-image-ring"></div>
-				<img src="images/aayush.jpg" alt="Aayush Gupta" id="profile_pic">
-			</div>
+	<!-- Loading Screen -->
+	<div id="loading-screen">
+		<div class="loading-content">
+			<div class="loading-spinner"></div>
+			<h2>Aayush Gupta</h2>
+			<p>Loading portfolio...</p>
 		</div>
 	</div>
-</section>
 
-<main id="main-content">
+	<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- About -->
-<section class="section" id="about">
-	<div class="section-container">
-		<div class="section-header">
-			<p class="section-label">About Me</p>
-			<h2 class="section-title">Passionate about building scalable solutions</h2>
+	<!-- Scroll Progress -->
+	<div class="scroll-progress">
+		<div class="scroll-progress-bar"></div>
+	</div>
+
+	<!-- Navbar -->
+	<nav class="navbar" id="navbar">
+		<div class="nav-container">
+			<a href="#" class="nav-logo">AG.</a>
+			<ul class="nav-links" id="nav-links">
+				<li><a href="#about">About</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li><a href="#" id="open-resume-btn" class="nav-resume">Resume</a></li>
+			</ul>
+			<button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Theme" title="Toggle Theme">
+				<span class="theme-icon">🌙</span>
+			</button>
+			<button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+				<span></span><span></span><span></span>
+			</button>
 		</div>
-		<div class="about-grid">
-			<div class="about-text reveal">
-				<p><strong>System Engineer at Tata Consultancy Services (TCS)</strong> with a B.Tech in Information Technology from Medicaps University, Indore.</p>
-				<p>I specialize in full-stack development with Angular + Spring Boot, cloud platforms (AWS/Azure), DevOps practices, and AI/ML exploration. I love solving complex problems and building products that make a difference.</p>
-				<p>When I'm not coding, I create educational content on my <a href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube channel</a> and solve problems on <a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a>.</p>
-			</div>
-			<div class="about-stats reveal">
-				<div class="stat-card">
-					<div class="stat-number" data-target="50">0</div>
-					<div class="stat-label">Projects Built</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number" data-target="3">0</div>
-					<div class="stat-label">Years Experience</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number" data-target="15">0</div>
-					<div class="stat-label">Technologies</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number" data-target="1000">0</div>
-					<div class="stat-label">LeetCode Problems</div>
+	</nav>
+
+	<!-- Hero -->
+	<section class="hero" id="hero">
+		<div class="hero-bg">
+			<div class="orb orb-1"></div>
+			<div class="orb orb-2"></div>
+			<div class="orb orb-3"></div>
+		</div>
+		<div class="hero-container">
+			<div class="hero-content">
+				<div class="hero-badge"><span class="dot"></span> Available for Freelance & Contract Work</div>
+				<h1>Hi, I'm <span class="gradient-text">Aayush Gupta</span></h1>
+				<p class="hero-subtitle">System Engineer at TCS · Freelance Full Stack Developer · AI Architect</p>
+				<div class="hero-typing" id="typing"></div>
+				<div class="hero-buttons">
+					<a href="#contact" class="btn btn-primary">Hire Me / Let's Build →</a>
+					<a href="#projects" class="btn btn-outline">View Projects</a>
 				</div>
 			</div>
+			<div class="hero-visual">
+				<div class="hero-image-wrapper">
+					<div class="hero-image-ring"></div>
+					<img src="images/aayush.jpeg" alt="Aayush Gupta" id="profile_pic">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<main id="main-content">
+
+		<!-- About -->
+		<section class="section" id="about">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">About Me</p>
+					<h2 class="section-title">Passionate about building scalable solutions</h2>
+				</div>
+				<div class="about-grid">
+					<div class="about-text reveal">
+						<p><strong>System Engineer at Tata Consultancy Services (TCS)</strong> with a B.Tech in
+							Information Technology from Medicaps University, Indore.</p>
+						<p>I specialize in full-stack development with Angular + Spring Boot, cloud platforms
+							(AWS/Azure), DevOps practices, and AI/ML exploration. I love solving complex problems and
+							building products that make a difference.</p>
+						<p>When I'm not coding, I create educational content on my <a
+								href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube channel</a> and
+							solve problems on <a href="https://leetcode.com/u/aayushgupta047"
+								target="_blank">LeetCode</a>.</p>
+					</div>
+					<div class="about-stats reveal">
+						<div class="stat-card">
+							<div class="stat-number" data-target="50">0</div>
+							<div class="stat-label">Projects Built</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number" data-target="3">0</div>
+							<div class="stat-label">Years Experience</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number" data-target="15">0</div>
+							<div class="stat-label">Technologies</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number" data-target="1000">0</div>
+							<div class="stat-label">LeetCode Problems</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services -->
+		<section class="section" id="services">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">Services Offered</p>
+					<h2 class="section-title">What I Can Build For You</h2>
+					<p class="section-desc">Client-focused full-stack development and AI integrations built for business growth and automation</p>
+				</div>
+				<div class="services-grid">
+					<div class="service-card reveal">
+						<div class="service-icon">💻</div>
+						<h3>Full-Stack SaaS & Web Apps</h3>
+						<p>End-to-end custom application development with secure APIs, database systems, and robust Angular/React client interfaces.</p>
+						<ul class="service-list">
+							<li>Spring Boot & Node.js Restful APIs</li>
+							<li>Responsive, high-performance web frontends</li>
+							<li>MySQL, MongoDB & Firebase backends</li>
+						</ul>
+					</div>
+					<div class="service-card reveal">
+						<div class="service-icon">🤖</div>
+						<h3>Custom AI & Automation Solutions</h3>
+						<p>Integrate cutting-edge AI features, large language models, and autonomous AI agents directly into your workflows.</p>
+						<ul class="service-list">
+							<li>LangChain & LLM integrations</li>
+							<li>Autonomous task automation agents</li>
+							<li>Vedic AI astro & text models</li>
+						</ul>
+					</div>
+					<div class="service-card reveal">
+						<div class="service-icon">☁️</div>
+						<h3>Cloud Infrastructure & DevOps</h3>
+						<p>Build, scale, and securely host your application using scalable container architecture and reliable cloud platforms.</p>
+						<ul class="service-list">
+							<li>AWS/Azure setup & migration</li>
+							<li>Docker containerization & orchestration</li>
+							<li>CI/CD automated release pipelines</li>
+						</ul>
+					</div>
+					<div class="service-card reveal">
+						<div class="service-icon">🛡️</div>
+						<h3>System Design & Security Auditing</h3>
+						<p>Performance optimization, clean backend system design, code reviews, and threat modeling for secure applications.</p>
+						<ul class="service-list">
+							<li>O(n log n) efficiency & BigDecimal precision</li>
+							<li>Process monitoring & security checks</li>
+							<li>Clean, testable code architecture</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section class="section" id="skills" style="background:var(--bg-secondary)">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">Tech Stack</p>
+					<h2 class="section-title">Skills & Technologies</h2>
+				</div>
+				<div class="skills-grid">
+					<div class="skill-group reveal">
+						<div class="skill-group-title"><span class="skill-group-icon"
+								style="background:rgba(108,92,231,0.15)">🎨</span> Frontend</div>
+						<div class="skill-tags">
+							<span class="skill-tag">Angular</span><span class="skill-tag">React</span>
+							<span class="skill-tag">TypeScript</span><span class="skill-tag">JavaScript</span>
+							<span class="skill-tag">HTML5/CSS3</span><span class="skill-tag">RxJS</span>
+						</div>
+					</div>
+					<div class="skill-group reveal">
+						<div class="skill-group-title"><span class="skill-group-icon"
+								style="background:rgba(0,206,201,0.15)">⚙️</span> Backend</div>
+						<div class="skill-tags">
+							<span class="skill-tag">Spring Boot</span><span class="skill-tag">Node.js</span>
+							<span class="skill-tag">Python</span><span class="skill-tag">Java</span>
+							<span class="skill-tag">REST APIs</span><span class="skill-tag">Flask</span>
+						</div>
+					</div>
+					<div class="skill-group reveal">
+						<div class="skill-group-title"><span class="skill-group-icon"
+								style="background:rgba(253,121,168,0.15)">☁️</span> Cloud & DevOps</div>
+						<div class="skill-tags">
+							<span class="skill-tag">AWS</span><span class="skill-tag">Azure</span>
+							<span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+							<span class="skill-tag">CI/CD</span><span class="skill-tag">Terraform</span>
+						</div>
+					</div>
+					<div class="skill-group reveal">
+						<div class="skill-group-title"><span class="skill-group-icon"
+								style="background:rgba(85,239,196,0.15)">🤖</span> AI / ML & Tools</div>
+						<div class="skill-tags">
+							<span class="skill-tag">AI Agents</span><span class="skill-tag">LangChain</span>
+							<span class="skill-tag">Machine Learning</span><span class="skill-tag">Firebase</span>
+							<span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Experience -->
+		<section class="section" id="experience">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">Journey</p>
+					<h2 class="section-title">Experience & Education</h2>
+				</div>
+				<div class="timeline">
+					<div class="timeline-item reveal">
+						<div class="timeline-dot"></div>
+						<div class="timeline-card">
+							<div class="timeline-date">2021 — Present</div>
+							<div class="timeline-role">System Engineer</div>
+							<div class="timeline-company">Tata Consultancy Services (TCS)</div>
+							<div class="timeline-desc">Architect cloud-native solutions on AWS/Azure. Design CI/CD
+								pipelines, lead containerization with Docker/K8s, and mentor junior developers.</div>
+							<div class="timeline-techs">
+								<span class="timeline-tech">AWS</span><span class="timeline-tech">Azure</span>
+								<span class="timeline-tech">Docker</span><span class="timeline-tech">Kubernetes</span>
+								<span class="timeline-tech">Jenkins</span>
+							</div>
+						</div>
+					</div>
+					<div class="timeline-item reveal">
+						<div class="timeline-dot"></div>
+						<div class="timeline-card">
+							<div class="timeline-date">2021 — Present</div>
+							<div class="timeline-role">Full Stack Developer</div>
+							<div class="timeline-company">Freelance & Personal Projects</div>
+							<div class="timeline-desc">Building end-to-end web applications using Angular, React, Spring
+								Boot, and Node.js. Creating AI-powered tools and cybersecurity applications.</div>
+							<div class="timeline-techs">
+								<span class="timeline-tech">Angular</span><span class="timeline-tech">React</span>
+								<span class="timeline-tech">Spring Boot</span><span class="timeline-tech">Python</span>
+							</div>
+						</div>
+					</div>
+					<div class="timeline-item reveal">
+						<div class="timeline-dot"></div>
+						<div class="timeline-card">
+							<div class="timeline-date">2017 — 2021</div>
+							<div class="timeline-role">B.Tech — Information Technology</div>
+							<div class="timeline-company">Medicaps University, Indore</div>
+							<div class="timeline-desc">Graduated with distinction. Strong foundation in software
+								engineering, data structures, algorithms, and competitive programming.</div>
+							<div class="timeline-techs">
+								<span class="timeline-tech">DSA</span><span class="timeline-tech">DBMS</span>
+								<span class="timeline-tech">OS</span><span class="timeline-tech">ML</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Projects -->
+		<section class="section" id="projects" style="background:var(--bg-secondary)">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">Portfolio</p>
+					<h2 class="section-title">Featured Projects</h2>
+					<p class="section-desc">Real projects built with modern technologies</p>
+				</div>
+				<div class="projects-filter">
+					<button class="filter-btn active" data-filter="all">All</button>
+					<button class="filter-btn" data-filter="ai">AI / Security</button>
+					<button class="filter-btn" data-filter="web">Web Apps</button>
+					<button class="filter-btn" data-filter="tools">Tools</button>
+				</div>
+				<div class="projects-grid">
+
+					<!-- Project 1: CyberShield -->
+					<div class="project-card reveal" data-category="ai">
+						<div class="project-gradient" style="background:linear-gradient(135deg,#0f3443,#34e89e)">🛡️
+						</div>
+						<div class="project-body">
+							<div class="project-title">CyberShield AI Agent</div>
+							<div class="project-desc">Real-time cybersecurity monitor that detects hidden processes,
+								stealth AI agents, and suspicious background apps invisible to Task Manager.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">Python</span><span class="project-tech-tag">Flask</span>
+								<span class="project-tech-tag">JavaScript</span><span
+									class="project-tech-tag">psutil</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/cyber-shield-ai-agent" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project 2: Vedic AI Kundali -->
+					<div class="project-card reveal" data-category="ai">
+						<div class="project-gradient" style="background:linear-gradient(135deg,#2d1b69,#e040fb)">🔮
+						</div>
+						<div class="project-body">
+							<div class="project-title">Vedic AI Kundali</div>
+							<div class="project-desc">AI-powered Vedic astrology platform with Kundali generation, 36
+								Gun matching, Dasha predictions, and personalized AI chat for life guidance.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">Angular</span><span
+									class="project-tech-tag">TypeScript</span>
+								<span class="project-tech-tag">AI/ML</span><span class="project-tech-tag">Node.js</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/vedic-ai-kundali" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project 3: AI Agent Arena -->
+					<div class="project-card reveal" data-category="ai">
+						<div class="project-gradient" style="background:linear-gradient(135deg,#1a1a2e,#e94560)">🤖
+						</div>
+						<div class="project-body">
+							<div class="project-title">AI Agent Arena</div>
+							<div class="project-desc">Simulation game where multiple AI agents compete and cooperate to
+								complete missions using tools, memory, reasoning, and external APIs.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">HTML/CSS</span><span
+									class="project-tech-tag">JavaScript</span>
+								<span class="project-tech-tag">AI Agents</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/ai-agent-arena" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project 4: BlackRock Hackathon -->
+					<div class="project-card reveal" data-category="web">
+						<div class="project-gradient" style="background:linear-gradient(135deg,#0c0c1d,#ffd700)">🏦
+						</div>
+						<div class="project-body">
+							<div class="project-title">BlackRock Retirement Challenge</div>
+							<div class="project-desc">Production-grade solution for BlackRock Hackathon — O(n log n)
+								retirement fund optimization with BigDecimal precision, fully Dockerized.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">Java</span><span class="project-tech-tag">Spring
+									Boot</span>
+								<span class="project-tech-tag">Docker</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/blk-hacking-ind-aayush-gupta" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project 5: AI Agent Sage Life Orchestrator -->
+					<div class="project-card reveal" data-category="ai">
+						<div class="project-gradient" style="background:linear-gradient(135deg,#0d1117,#58a6ff)">🧠
+						</div>
+						<div class="project-body">
+							<div class="project-title">AI Agent Sage — Life Orchestrator</div>
+							<div class="project-desc">An intelligent AI agent that transforms how we live in the digital
+								world — orchestrating tasks, managing workflows, and providing life-enhancing AI
+								assistance.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">TypeScript</span><span class="project-tech-tag">AI
+									Agents</span>
+								<span class="project-tech-tag">LangChain</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/ai-agent-sage-life-orchestrator" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project 6: Tic-Tac-Toe -->
+					<div class="project-card reveal" data-category="tools">
+						<div class="project-gradient"
+							style="background:linear-gradient(135deg,#0f0c29,#24243e,#302b63)">🎮</div>
+						<div class="project-body">
+							<div class="project-title">Angular Tic-Tac-Toe</div>
+							<div class="project-desc">Interactive tic-tac-toe game built with Angular, featuring PWA
+								support and hosted on Firebase with real-time database integration.</div>
+							<div class="project-techs">
+								<span class="project-tech-tag">Angular</span><span
+									class="project-tech-tag">TypeScript</span>
+								<span class="project-tech-tag">Firebase</span>
+							</div>
+							<div class="project-links">
+								<a href="https://github.com/Aayush1003/angular-tic-tac-toe" target="_blank"
+									class="project-link">GitHub →</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact -->
+		<section class="section" id="contact">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">Contact</p>
+					<h2 class="section-title">Let's Work Together</h2>
+				</div>
+				<div class="contact-grid">
+					<div class="contact-info reveal">
+						<h3>Get in touch</h3>
+						<p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of
+							your visions.</p>
+						<div class="contact-links">
+							<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank"
+								class="contact-link-item">
+								<div class="contact-icon">💼</div>
+								<div>
+									<div class="contact-link-text">LinkedIn</div>
+									<div class="contact-link-sub">@Aayush Gupta</div>
+								</div>
+							</a>
+							<a href="https://github.com/Aayush1003" target="_blank" class="contact-link-item">
+								<div class="contact-icon">🐙</div>
+								<div>
+									<div class="contact-link-text">GitHub</div>
+									<div class="contact-link-sub">@Aayush1003</div>
+								</div>
+							</a>
+							<a href="https://www.youtube.com/@AayushGupta04" target="_blank" class="contact-link-item">
+								<div class="contact-icon">🎬</div>
+								<div>
+									<div class="contact-link-text">YouTube</div>
+									<div class="contact-link-sub">@AayushGupta04</div>
+								</div>
+							</a>
+							<a href="https://leetcode.com/u/aayushgupta047" target="_blank" class="contact-link-item">
+								<div class="contact-icon">🧩</div>
+								<div>
+									<div class="contact-link-text">LeetCode</div>
+									<div class="contact-link-sub">1000+ problems solved</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<form id="contact-form" class="contact-form reveal" novalidate>
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input class="form-input" type="text" id="name" name="name" required>
+							<span class="error-message" id="name-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input class="form-input" type="email" id="email" name="email" required>
+							<span class="error-message" id="email-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="subject">Subject</label>
+							<input class="form-input" type="text" id="subject" name="subject" required>
+							<span class="error-message" id="subject-error"></span>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="project-type">Project Type</label>
+								<select class="form-input" id="project-type" name="project_type">
+									<option value="saas_web">Full-Stack SaaS / Web App</option>
+									<option value="ai_agent">Custom AI Agent & Automation</option>
+									<option value="devops_cloud">Cloud Migration & DevOps</option>
+									<option value="consulting">System Design & Consultation</option>
+									<option value="other">Other / Custom Request</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="budget">Estimated Budget</label>
+								<select class="form-input" id="budget" name="budget">
+									<option value="under_1k">Under $1,000</option>
+									<option value="1k_5k">$1,000 - $5,000</option>
+									<option value="5k_10k">$5,000 - $10,000</option>
+									<option value="10k_plus">$10,000+</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message">Message</label>
+							<textarea class="form-input" id="message" name="message" required rows="5" placeholder="Please describe your project scope and goals..."></textarea>
+							<span class="error-message" id="message-error"></span>
+						</div>
+						<button type="submit" class="btn btn-primary" id="submit-btn">Send Message →</button>
+						<div id="form-message" role="alert" aria-live="polite"></div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- Resume Modal -->
+	<div id="resume-modal" class="modal" aria-hidden="true">
+		<div class="modal-content">
+			<button class="modal-close" aria-label="Close">×</button>
+			<h3>Resume</h3>
+			<iframe src="resumes.pdf" width="100%" height="500px"
+				style="border:none;border-radius:8px;margin:16px 0"></iframe>
+			<a href="resumes.pdf" download class="btn btn-primary">Download PDF</a>
 		</div>
 	</div>
-</section>
 
-<!-- Skills -->
-<section class="section" id="skills" style="background:var(--bg-secondary)">
-	<div class="section-container">
-		<div class="section-header">
-			<p class="section-label">Tech Stack</p>
-			<h2 class="section-title">Skills & Technologies</h2>
-		</div>
-		<div class="skills-grid">
-			<div class="skill-group reveal">
-				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(108,92,231,0.15)">🎨</span> Frontend</div>
-				<div class="skill-tags">
-					<span class="skill-tag">Angular</span><span class="skill-tag">React</span>
-					<span class="skill-tag">TypeScript</span><span class="skill-tag">JavaScript</span>
-					<span class="skill-tag">HTML5/CSS3</span><span class="skill-tag">RxJS</span>
-				</div>
-			</div>
-			<div class="skill-group reveal">
-				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(0,206,201,0.15)">⚙️</span> Backend</div>
-				<div class="skill-tags">
-					<span class="skill-tag">Spring Boot</span><span class="skill-tag">Node.js</span>
-					<span class="skill-tag">Python</span><span class="skill-tag">Java</span>
-					<span class="skill-tag">REST APIs</span><span class="skill-tag">Flask</span>
-				</div>
-			</div>
-			<div class="skill-group reveal">
-				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(253,121,168,0.15)">☁️</span> Cloud & DevOps</div>
-				<div class="skill-tags">
-					<span class="skill-tag">AWS</span><span class="skill-tag">Azure</span>
-					<span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
-					<span class="skill-tag">CI/CD</span><span class="skill-tag">Terraform</span>
-				</div>
-			</div>
-			<div class="skill-group reveal">
-				<div class="skill-group-title"><span class="skill-group-icon" style="background:rgba(85,239,196,0.15)">🤖</span> AI / ML & Tools</div>
-				<div class="skill-tags">
-					<span class="skill-tag">AI Agents</span><span class="skill-tag">LangChain</span>
-					<span class="skill-tag">Machine Learning</span><span class="skill-tag">Firebase</span>
-					<span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span>
-				</div>
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="section-container">
+			<p>© 2026 Aayush Gupta. Crafted with passion.</p>
+			<div class="footer-links">
+				<a href="https://github.com/Aayush1003" target="_blank">GitHub</a>
+				<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank">LinkedIn</a>
+				<a href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube</a>
+				<a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a>
 			</div>
 		</div>
+	</footer>
+
+	<!-- FAB -->
+	<div class="fab-container" id="fab-container">
+		<button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to Top"
+			title="Back to Top">↑</button>
 	</div>
-</section>
 
-<!-- Experience -->
-<section class="section" id="experience">
-	<div class="section-container">
-		<div class="section-header">
-			<p class="section-label">Journey</p>
-			<h2 class="section-title">Experience & Education</h2>
-		</div>
-		<div class="timeline">
-			<div class="timeline-item reveal">
-				<div class="timeline-dot"></div>
-				<div class="timeline-card">
-					<div class="timeline-date">2021 — Present</div>
-					<div class="timeline-role">System Engineer</div>
-					<div class="timeline-company">Tata Consultancy Services (TCS)</div>
-					<div class="timeline-desc">Architect cloud-native solutions on AWS/Azure. Design CI/CD pipelines, lead containerization with Docker/K8s, and mentor junior developers.</div>
-					<div class="timeline-techs">
-						<span class="timeline-tech">AWS</span><span class="timeline-tech">Azure</span>
-						<span class="timeline-tech">Docker</span><span class="timeline-tech">Kubernetes</span>
-						<span class="timeline-tech">Jenkins</span>
-					</div>
-				</div>
-			</div>
-			<div class="timeline-item reveal">
-				<div class="timeline-dot"></div>
-				<div class="timeline-card">
-					<div class="timeline-date">2021 — Present</div>
-					<div class="timeline-role">Full Stack Developer</div>
-					<div class="timeline-company">Freelance & Personal Projects</div>
-					<div class="timeline-desc">Building end-to-end web applications using Angular, React, Spring Boot, and Node.js. Creating AI-powered tools and cybersecurity applications.</div>
-					<div class="timeline-techs">
-						<span class="timeline-tech">Angular</span><span class="timeline-tech">React</span>
-						<span class="timeline-tech">Spring Boot</span><span class="timeline-tech">Python</span>
-					</div>
-				</div>
-			</div>
-			<div class="timeline-item reveal">
-				<div class="timeline-dot"></div>
-				<div class="timeline-card">
-					<div class="timeline-date">2017 — 2021</div>
-					<div class="timeline-role">B.Tech — Information Technology</div>
-					<div class="timeline-company">Medicaps University, Indore</div>
-					<div class="timeline-desc">Graduated with distinction. Strong foundation in software engineering, data structures, algorithms, and competitive programming.</div>
-					<div class="timeline-techs">
-						<span class="timeline-tech">DSA</span><span class="timeline-tech">DBMS</span>
-						<span class="timeline-tech">OS</span><span class="timeline-tech">ML</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Projects -->
-<section class="section" id="projects" style="background:var(--bg-secondary)">
-	<div class="section-container">
-		<div class="section-header">
-			<p class="section-label">Portfolio</p>
-			<h2 class="section-title">Featured Projects</h2>
-			<p class="section-desc">Real projects built with modern technologies</p>
-		</div>
-		<div class="projects-filter">
-			<button class="filter-btn active" data-filter="all">All</button>
-			<button class="filter-btn" data-filter="ai">AI / Security</button>
-			<button class="filter-btn" data-filter="web">Web Apps</button>
-			<button class="filter-btn" data-filter="tools">Tools</button>
-		</div>
-		<div class="projects-grid">
-
-			<!-- Project 1: CyberShield -->
-			<div class="project-card reveal" data-category="ai">
-				<div class="project-gradient" style="background:linear-gradient(135deg,#0f3443,#34e89e)">🛡️</div>
-				<div class="project-body">
-					<div class="project-title">CyberShield AI Agent</div>
-					<div class="project-desc">Real-time cybersecurity monitor that detects hidden processes, stealth AI agents, and suspicious background apps invisible to Task Manager.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">Python</span><span class="project-tech-tag">Flask</span>
-						<span class="project-tech-tag">JavaScript</span><span class="project-tech-tag">psutil</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Aayush1003/cyber-shield-ai-agent" target="_blank" class="project-link">GitHub →</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project 2: Vedic AI Kundali -->
-			<div class="project-card reveal" data-category="ai">
-				<div class="project-gradient" style="background:linear-gradient(135deg,#2d1b69,#e040fb)">🔮</div>
-				<div class="project-body">
-					<div class="project-title">Vedic AI Kundali</div>
-					<div class="project-desc">AI-powered Vedic astrology platform with Kundali generation, 36 Gun matching, Dasha predictions, and personalized AI chat for life guidance.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">TypeScript</span>
-						<span class="project-tech-tag">AI/ML</span><span class="project-tech-tag">Node.js</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Aayush1003/vedic-ai-kundali" target="_blank" class="project-link">GitHub →</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project 3: AI Agent Arena -->
-			<div class="project-card reveal" data-category="ai">
-				<div class="project-gradient" style="background:linear-gradient(135deg,#1a1a2e,#e94560)">🤖</div>
-				<div class="project-body">
-					<div class="project-title">AI Agent Arena</div>
-					<div class="project-desc">Simulation game where multiple AI agents compete and cooperate to complete missions using tools, memory, reasoning, and external APIs.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">HTML/CSS</span><span class="project-tech-tag">JavaScript</span>
-						<span class="project-tech-tag">AI Agents</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Aayush1003/ai-agent-arena" target="_blank" class="project-link">GitHub →</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project 4: BlackRock Hackathon -->
-			<div class="project-card reveal" data-category="web">
-				<div class="project-gradient" style="background:linear-gradient(135deg,#0c0c1d,#ffd700)">🏦</div>
-				<div class="project-body">
-					<div class="project-title">BlackRock Retirement Challenge</div>
-					<div class="project-desc">Production-grade solution for BlackRock Hackathon — O(n log n) retirement fund optimization with BigDecimal precision, fully Dockerized.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">Java</span><span class="project-tech-tag">Spring Boot</span>
-						<span class="project-tech-tag">Docker</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Aayush1003/blk-hacking-ind-aayush-gupta" target="_blank" class="project-link">GitHub →</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project 5: Lab Management -->
-			<div class="project-card reveal" data-category="web">
-				<div class="project-thumb"><img src="images/dash.jpg" alt="Lab Management System"></div>
-				<div class="project-body">
-					<div class="project-title">Laboratory Management System</div>
-					<div class="project-desc">End-to-end lab management system for FOI Laboratories with sample tracking, report generation, and dashboard analytics.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">Spring Boot</span>
-						<span class="project-tech-tag">MySQL</span>
-					</div>
-					<div class="project-links">
-						<a href="post.html" class="project-link">Details →</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project 6: Tic-Tac-Toe -->
-			<div class="project-card reveal" data-category="tools">
-				<div class="project-gradient" style="background:linear-gradient(135deg,#0f0c29,#24243e,#302b63)">🎮</div>
-				<div class="project-body">
-					<div class="project-title">Angular Tic-Tac-Toe</div>
-					<div class="project-desc">Interactive tic-tac-toe game built with Angular, featuring PWA support and hosted on Firebase with real-time database integration.</div>
-					<div class="project-techs">
-						<span class="project-tech-tag">Angular</span><span class="project-tech-tag">TypeScript</span>
-						<span class="project-tech-tag">Firebase</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Aayush1003/angular-tic-tac-toe" target="_blank" class="project-link">GitHub →</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</section>
-
-<!-- Contact -->
-<section class="section" id="contact">
-	<div class="section-container">
-		<div class="section-header">
-			<p class="section-label">Contact</p>
-			<h2 class="section-title">Let's Work Together</h2>
-		</div>
-		<div class="contact-grid">
-			<div class="contact-info reveal">
-				<h3>Get in touch</h3>
-				<p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-				<div class="contact-links">
-					<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank" class="contact-link-item">
-						<div class="contact-icon">💼</div>
-						<div><div class="contact-link-text">LinkedIn</div><div class="contact-link-sub">@Aayush Gupta</div></div>
-					</a>
-					<a href="https://github.com/Aayush1003" target="_blank" class="contact-link-item">
-						<div class="contact-icon">🐙</div>
-						<div><div class="contact-link-text">GitHub</div><div class="contact-link-sub">@Aayush1003</div></div>
-					</a>
-					<a href="https://www.youtube.com/@AayushGupta04" target="_blank" class="contact-link-item">
-						<div class="contact-icon">🎬</div>
-						<div><div class="contact-link-text">YouTube</div><div class="contact-link-sub">@AayushGupta04</div></div>
-					</a>
-					<a href="https://leetcode.com/u/aayushgupta047" target="_blank" class="contact-link-item">
-						<div class="contact-icon">🧩</div>
-						<div><div class="contact-link-text">LeetCode</div><div class="contact-link-sub">1000+ problems solved</div></div>
-					</a>
-				</div>
-			</div>
-			<form id="contact-form" class="contact-form reveal" novalidate>
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input class="form-input" type="text" id="name" name="name" required>
-					<span class="error-message" id="name-error"></span>
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input class="form-input" type="email" id="email" name="email" required>
-					<span class="error-message" id="email-error"></span>
-				</div>
-				<div class="form-group">
-					<label for="subject">Subject</label>
-					<input class="form-input" type="text" id="subject" name="subject" required>
-					<span class="error-message" id="subject-error"></span>
-				</div>
-				<div class="form-group">
-					<label for="message">Message</label>
-					<textarea class="form-input" id="message" name="message" required rows="5"></textarea>
-					<span class="error-message" id="message-error"></span>
-				</div>
-				<button type="submit" class="btn btn-primary" id="submit-btn">Send Message →</button>
-				<div id="form-message" role="alert" aria-live="polite"></div>
-			</form>
-		</div>
-	</div>
-</section>
-
-</main>
-
-<!-- Resume Modal -->
-<div id="resume-modal" class="modal" aria-hidden="true">
-	<div class="modal-content">
-		<button class="modal-close" aria-label="Close">×</button>
-		<h3>Resume</h3>
-		<iframe src="resumes.pdf" width="100%" height="500px" style="border:none;border-radius:8px;margin:16px 0"></iframe>
-		<a href="resumes.pdf" download class="btn btn-primary">Download PDF</a>
-	</div>
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-	<div class="section-container">
-		<p>© 2026 Aayush Gupta. Crafted with passion.</p>
-		<div class="footer-links">
-			<a href="https://github.com/Aayush1003" target="_blank">GitHub</a>
-			<a href="https://www.linkedin.com/in/aayush-gupta-1013a3158/" target="_blank">LinkedIn</a>
-			<a href="https://www.youtube.com/@AayushGupta04" target="_blank">YouTube</a>
-			<a href="https://leetcode.com/u/aayushgupta047" target="_blank">LeetCode</a>
-		</div>
-	</div>
-</footer>
-
-<!-- FAB -->
-<div class="fab-container" id="fab-container">
-	<button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to Top" title="Back to Top">↑</button>
-</div>
-
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js" defer></script>
-<script src="script.js" defer></script>
+	<!-- EmailJS -->
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js" defer></script>
+	<script src="script.js" defer></script>
 </body>
+
 </html>
