@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const btn = document.getElementById('submit-btn');
       if (btn) {
-        btn.textContent = 'Sending...';
+        btn.textContent = 'Opening mail app...';
         btn.disabled = true;
       }
 
@@ -137,34 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const mailtoLink = `mailto:aayushgupta047@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
       try {
-        if (typeof emailjs !== 'undefined') {
-          emailjs.init('Y-uUF6NpMZhRqBY4E');
-          await emailjs.send('service_rqo828j', 'template_w87qlwp', {
-            to_email: 'aayushgupta047@gmail.com',
-            from_name: name,
-            from_email: email,
-            subject: `${subject} (${projectType} - Budget: ${budget})`,
-            message: fullMessage,
-            project_type: projectType,
-            budget: budget
-          });
-
-          if (msgEl) {
-            msgEl.textContent = '✅ Message sent successfully!';
-            msgEl.style.color = 'var(--accent-2)';
-          }
-          form.reset();
-        } else {
-          throw new Error('EmailJS not available');
+        if (msgEl) {
+          msgEl.textContent = 'Opening your email app with your message...';
+          msgEl.style.color = 'var(--accent-2)';
         }
+
+        const mailtoLinkElement = document.createElement('a');
+        mailtoLinkElement.href = mailtoLink;
+        mailtoLinkElement.style.display = 'none';
+        document.body.appendChild(mailtoLinkElement);
+        mailtoLinkElement.click();
+        document.body.removeChild(mailtoLinkElement);
+        form.reset();
       } catch (error) {
         console.error('Contact form submission failed:', error);
         if (msgEl) {
-          msgEl.innerHTML = '📧 The email service is unavailable right now. Your email app should open with your message so you can send it directly.';
+          msgEl.innerHTML = '📧 Please email me directly at <a href="mailto:aayushgupta047@gmail.com">aayushgupta047@gmail.com</a> if your email app does not open.';
           msgEl.style.color = 'var(--accent-3)';
         }
-        window.location.href = mailtoLink;
-        form.reset();
       } finally {
         if (btn) {
           btn.textContent = 'Send Message →';
