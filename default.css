@@ -427,8 +427,12 @@ a:hover { color:var(--accent-1); }
 .form-input:focus { border-color:var(--accent-1); box-shadow:0 0 0 3px rgba(108,92,231,0.1); }
 textarea.form-input { resize:vertical; min-height:120px; }
 
-#form-message { margin-top:8px; font-size:0.85rem; }
-.error-message { color:var(--accent-3); font-size:0.8rem; }
+#form-message { margin-top:12px; font-size:0.88rem; line-height:1.5; border-radius:var(--radius-sm); }
+#form-message.success { color:#00b894; font-weight:500; }
+#form-message.error { color:#ff7675; font-weight:500; }
+#form-message.info { color:var(--accent-1); font-weight:500; }
+#form-message a { color:inherit; text-decoration:underline; font-weight:600; }
+.error-message { color:var(--accent-3); font-size:0.8rem; margin-top:4px; display:block; }
 
 /* FOOTER */
 .footer {

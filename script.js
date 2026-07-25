@@ -126,38 +126,73 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!valid) return;
 
       const btn = document.getElementById('submit-btn');
+      const originalBtnText = btn ? btn.textContent : 'Send Message →';
+      
       if (btn) {
-        btn.textContent = 'Opening mail app...';
+        btn.textContent = 'Sending Message...';
         btn.disabled = true;
       }
 
-      const fullMessage = `Project Type: ${projectType}\nEstimated Budget: ${budget}\n\nMessage:\n${message}`;
+      if (msgEl) {
+        msgEl.className = 'info';
+        msgEl.textContent = 'Sending your message...';
+      }
+
+      const payload = {
+        name: name,
+        email: email,
+        _subject: `${subject} (${projectType} - Budget: ${budget})`,
+        "Project Type": projectType,
+        "Estimated Budget": budget,
+        "Subject": subject,
+        "Message": message,
+        _captcha: "false",
+        _template: "table"
+      };
+
       const mailtoSubject = encodeURIComponent(`${subject} (${projectType} - Budget: ${budget})`);
       const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Type: ${projectType}\nEstimated Budget: ${budget}\n\nMessage:\n${message}`);
       const mailtoLink = `mailto:aayushgupta047@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
       try {
-        if (msgEl) {
-          msgEl.textContent = 'Opening your email app with your message...';
-          msgEl.style.color = 'var(--accent-2)';
-        }
+        const response = await fetch('https://formsubmit.co/ajax/aayushgupta047@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
-        const mailtoLinkElement = document.createElement('a');
-        mailtoLinkElement.href = mailtoLink;
-        mailtoLinkElement.style.display = 'none';
-        document.body.appendChild(mailtoLinkElement);
-        mailtoLinkElement.click();
-        document.body.removeChild(mailtoLinkElement);
-        form.reset();
+        const result = await response.json();
+
+        if (result.success === 'true' || result.success === true) {
+          if (msgEl) {
+            msgEl.className = 'success';
+            msgEl.textContent = '✅ Message sent successfully! I will get back to you soon.';
+          }
+          form.reset();
+        } else if (result.message && result.message.includes('Activation')) {
+          if (msgEl) {
+            msgEl.className = 'info';
+            msgEl.innerHTML = '📧 FormSubmit sent an activation email to <strong>aayushgupta047@gmail.com</strong>. Please check your inbox and click "Activate Form" once to enable instant email delivery.';
+          }
+        } else {
+          console.warn('FormSubmit response:', result);
+          if (msgEl) {
+            msgEl.className = 'error';
+            msgEl.innerHTML = `⚠️ ${result.message || 'Could not send message automatically.'} <br>You can also email me directly at <a href="${mailtoLink}">aayushgupta047@gmail.com</a>.`;
+          }
+        }
       } catch (error) {
         console.error('Contact form submission failed:', error);
         if (msgEl) {
-          msgEl.innerHTML = '📧 Please email me directly at <a href="mailto:aayushgupta047@gmail.com">aayushgupta047@gmail.com</a> if your email app does not open.';
-          msgEl.style.color = 'var(--accent-3)';
+          msgEl.className = 'error';
+          msgEl.innerHTML = `📧 Network error sending message. Please email directly at <a href="${mailtoLink}">aayushgupta047@gmail.com</a>.`;
         }
       } finally {
         if (btn) {
-          btn.textContent = 'Send Message →';
+          btn.textContent = originalBtnText;
           btn.disabled = false;
         }
       }
