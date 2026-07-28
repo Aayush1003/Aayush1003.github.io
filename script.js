@@ -2,7 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Loading screen
   setTimeout(() => {
     const ls = document.getElementById('loading-screen');
-    if (ls) ls.classList.add('hidden');
+    if (ls) {
+      ls.classList.add('hidden');
+      setTimeout(() => {
+        ls.style.display = 'none';
+      }, 700);
+    }
   }, 1200);
 
   // Typing effect
@@ -60,8 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const reveals = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  reveals.forEach(el => revealObserver.observe(el));
+  }, { threshold: 0 });
+  reveals.forEach(el => {
+    // Immediately activate elements already in view on page load
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('active');
+    } else {
+      revealObserver.observe(el);
+    }
+  });
+
 
   // Stats counter
   const stats = document.querySelectorAll('.stat-number[data-target]');

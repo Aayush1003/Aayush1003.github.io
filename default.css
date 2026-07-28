@@ -77,7 +77,7 @@ a:hover { color:var(--accent-1); }
   display:flex; align-items:center; justify-content:center;
   transition:opacity 0.6s, visibility 0.6s;
 }
-#loading-screen.hidden { opacity:0; visibility:hidden; }
+#loading-screen.hidden { opacity:0; visibility:hidden; pointer-events:none; }
 .loading-content { text-align:center; }
 .loading-spinner {
   width:48px; height:48px; margin:0 auto 20px;
@@ -476,8 +476,9 @@ textarea.form-input { resize:vertical; min-height:120px; }
 .reveal {
   opacity:0; transform:translateY(30px);
   transition:opacity 0.6s ease, transform 0.6s ease;
+  pointer-events:none;
 }
-.reveal.active { opacity:1; transform:translateY(0); }
+.reveal.active { opacity:1; transform:translateY(0); pointer-events:auto; }
 
 /* MODAL */
 .modal {
