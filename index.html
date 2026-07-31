@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Assistant & Auto-Fill Hub | Aayush Gupta</title>
+  <meta name="description" content="Automated Job Application Assistant & Tracker for 100 top tech companies tailored for Aayush Gupta.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">🚀</div>
+        <div>
+          <h1 class="app-title">Job Application Hub</h1>
+          <div class="subtitle">100 Top Tech Companies • 1-Click Auto-Fill Assistant</div>
+        </div>
+      </div>
+
+      <div class="header-stats">
+        <div class="stat-chip">
+          <div class="stat-value" id="statTotal">100</div>
+          <div class="stat-label">Companies</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-value" id="statApplied">0</div>
+          <div class="stat-label">Applied</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-value" id="statInterviewing">0</div>
+          <div class="stat-label">Interviewing</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- Sidebar: Candidate Profile & Quick Copy -->
+    <aside class="sidebar">
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="avatar">AG</div>
+          <div>
+            <div class="candidate-name">Aayush Gupta</div>
+            <div class="candidate-title">Technical Lead • 4+ Yrs Exp</div>
+          </div>
+        </div>
+
+        <div class="section-label">⚡ 1-Click Profile Copy</div>
+        <div class="copy-field-list" id="profileCopyList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Bookmarklet Auto-Fill Tool -->
+      <div class="tool-card">
+        <div class="section-label">🪄 Auto-Fill Bookmarklet</div>
+        <div class="bookmarklet-box">
+          <a href="#" id="bookmarkletBtn" class="bookmarklet-link">⚡ Auto-Fill Form</a>
+          <p class="bookmarklet-desc">
+            <strong>Drag & Drop</strong> this button to your browser's bookmarks bar. Click it on any job application page to automatically fill Aayush's name, email, phone, LinkedIn, and summary!
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content: Filters & Company Grid -->
+    <main class="content-area">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-top">
+          <!-- Search Box -->
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by company name or sector (e.g., Google, AI, Fintech)..." />
+          </div>
+
+          <!-- Target Country & Role Selectors -->
+          <div class="select-group">
+            <select id="countrySelect" class="custom-select" title="Target Country">
+              <option value="USA">🇺🇸 USA</option>
+              <option value="India">🇮🇳 India</option>
+              <option value="Canada">🇨🇦 Canada</option>
+              <option value="United Kingdom">🇬🇧 UK</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="Remote">🌐 Remote</option>
+            </select>
+
+            <select id="roleSelect" class="custom-select" title="Target Role">
+              <option value="Full Stack Developer Java Spring Boot Angular React">Full Stack Developer</option>
+              <option value="Java Spring Boot Microservices Developer">Backend / Java Engineer</option>
+              <option value="Frontend Developer Angular React TypeScript">Frontend Engineer</option>
+              <option value="Technical Lead Software Engineering">Technical Lead</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills" id="categoryPills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Company Grid -->
+      <div class="company-grid" id="companyGrid">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Cover Letter Modal -->
+  <div class="modal-overlay" id="coverLetterModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalCompanyTitle">Tailored Cover Letter</h3>
+        <button class="close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <textarea id="coverLetterText" class="cover-letter-text" readonly></textarea>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="action-btn btn-secondary" onclick="closeModal()">Close</button>
+        <button class="action-btn btn-primary" onclick="copyCoverLetter()">📋 Copy Cover Letter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
