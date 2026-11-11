@@ -18,6 +18,7 @@
 </head>
 
 <body>
+	<div class="cursor-glow" aria-hidden="true"></div>
 
 	<!-- Loading Screen -->
 	<div id="loading-screen">
@@ -74,6 +75,20 @@
 					<a href="#contact" class="btn btn-primary">Hire Me / Let's Build →</a>
 					<a href="#projects" class="btn btn-outline">View Projects</a>
 				</div>
+				<div class="hero-meta">
+					<div class="mini-metric">
+						<span class="metric-label">Currently</span>
+						<strong>System Engineer @ TCS</strong>
+					</div>
+					<div class="mini-metric">
+						<span class="metric-label">Focus</span>
+						<strong>AI + SaaS Products</strong>
+					</div>
+					<div class="mini-metric">
+						<span class="metric-label">Open to</span>
+						<strong>Remote / Contract</strong>
+					</div>
+				</div>
 			</div>
 			<div class="hero-visual">
 				<div class="hero-image-wrapper">
@@ -113,6 +128,56 @@
 							<div class="stat-number" data-target="15">0</div>
 							<div class="stat-label">Technologies</div>
 						</div>
+						<div class="stat-card">
+							<div class="stat-number" data-target="9">0</div>
+							<div class="stat-label">AI Projects</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number" data-target="100">0</div>
+							<div class="stat-label">Problem Solved</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Highlights -->
+		<section class="section section-alt" id="highlights">
+			<div class="section-container">
+				<div class="section-header">
+					<p class="section-label">What I Build</p>
+					<h2 class="section-title">From idea to product-aware deployment</h2>
+				</div>
+				<div class="highlight-grid">
+					<div class="highlight-card reveal">
+						<div class="highlight-no">01</div>
+						<h3>AI-Powered Products</h3>
+						<p>Building agentic workflows, intelligent automation, and LLM-integrated experiences that turn manual work into scalable systems.</p>
+						<ul>
+							<li>Conversational tools</li>
+							<li>Workflow orchestration</li>
+							<li>Smart internal platforms</li>
+						</ul>
+					</div>
+					<div class="highlight-card reveal">
+						<div class="highlight-no">02</div>
+						<h3>High-Performance Web Apps</h3>
+						<p>Designing responsive dashboards, SaaS frontends, and scalable backend APIs with clean architecture and performance-first thinking.</p>
+						<ul>
+							<li>Angular / React</li>
+							<li>Spring Boot / Node.js</li>
+							<li>Secure cloud deployment</li>
+						</ul>
+					</div>
+					<div class="highlight-card reveal">
+						<div class="highlight-no">03</div>
+						<h3>Cloud & DevOps Execution</h3>
+						<p>Helping projects move from prototype to production with CI/CD pipelines, containerization, and reliable cloud infrastructure.</p>
+						<ul>
+							<li>AWS / Azure</li>
+							<li>Docker / K8s</li>
+							<li>Monitoring & automation</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -522,7 +587,7 @@
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="section-container">
-			<p>© 2026 Aayush Gupta. Crafted with passion.</p>
+			<p>© <span id="year"></span> Aayush Gupta. Crafted with passion.</p>
 			<div class="footer-links">
 				<a href="https://github.com/Aayush1003" target="_blank">GitHub</a>
 				<a href="https://www.linkedin.com/in/aayush-g-1013a3158/" target="_blank">LinkedIn</a>
